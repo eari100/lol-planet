@@ -14,8 +14,8 @@ public class RiotApi {
     @Value("${riot.api.key}")
     String apiKey;
 
-    public Object callApi(String delimitedUrl) {
+    public <T> T callApi(String delimitedUrl, Class<T> clazz) {
         String url = BASE_URL + delimitedUrl + "?api_key=" + apiKey;
-        return restTemplate.getForObject(url, Object.class);
+        return restTemplate.getForObject(url, clazz);
     }
 }
