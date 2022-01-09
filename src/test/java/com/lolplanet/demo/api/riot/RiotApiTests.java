@@ -1,6 +1,6 @@
 package com.lolplanet.demo.api.riot;
 
-import com.lolplanet.demo.api.riot.dto.SummonerDto;
+import com.lolplanet.demo.api.riot.dto.SummonerReqDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,10 +18,10 @@ public class RiotApiTests {
         String summonerName = "한남동의 황제";
         String delimitedUrl = String.format("lol/summoner/v4/summoners/by-name/%s", summonerName);
 
-        SummonerDto summonerDto = riotApi.callApi(delimitedUrl, SummonerDto.class);
+        SummonerReqDto summonerReqDto = riotApi.callApi(delimitedUrl, SummonerReqDto.class);
 
-        System.out.println(summonerName + " 의 소환사 정보: "+summonerDto.toString());
+        System.out.println(summonerName + " 의 소환사 정보: "+ summonerReqDto.toString());
 
-        assertThat(summonerDto.getName()).isEqualTo(summonerName);
+        assertThat(summonerReqDto.getName()).isEqualTo(summonerName);
     }
 }
