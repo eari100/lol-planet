@@ -2,10 +2,7 @@ package com.lolplanet.demo.web.controller;
 
 import com.lolplanet.demo.domain.summoner.Summoner;
 import com.lolplanet.demo.domain.summoner.SummonerRepository;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -88,6 +85,20 @@ public class SummonerRestControllerTests {
                     .andExpect(jsonPath("$.profileIconId", is(profileIconId)))
                     .andExpect(jsonPath("$.name", is(name)))
                     .andExpect(jsonPath("$.summonerLevel").value(pastSummonerLevel));
+        }
+
+        @Disabled
+        @Test
+        @DisplayName(
+            "1. DB에 데이터가 존재x " +
+            "2. Riot 서버에 데이터가 존재x "
+        )
+        public void DB에_저장되지_않는다() throws Exception {
+            final String NON_EXISTENT_NAME = "재욱의환상제드123";
+
+            mockMvc.perform(get(delimitedUrl + NON_EXISTENT_NAME))
+                    .andDo(print())
+                    .andExpect(status().isOk());
         }
     }
 }
