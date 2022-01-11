@@ -8,6 +8,7 @@ import com.lolplanet.demo.web.dto.SummonerResDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Optional;
 
@@ -25,7 +26,12 @@ public class SummonerService {
         if(summoner.isEmpty()) {
             // riot API 호출
             String delimitedUrl = String.format("lol/summoner/v4/summoners/by-name/%s", name);
-            SummonerReqDto reqDto = riotApi.callApi(delimitedUrl, SummonerReqDto.class);
+            SummonerReqDto reqDto;
+            try {
+                reqDto = riotApi.callApi(delimitedUrl, SummonerReqDto.class);
+            } catch (HttpClientErrorException ex) {
+                return new SummonerResDto();
+            }
 
             // DB에 저장
             Summoner newSummoner = summonerRepository.save(reqDto.toEntity());
