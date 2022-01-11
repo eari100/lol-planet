@@ -87,7 +87,6 @@ public class SummonerRestControllerTests {
                     .andExpect(jsonPath("$.summonerLevel").value(pastSummonerLevel));
         }
 
-        @Disabled
         @Test
         @DisplayName(
             "1. DB에 데이터가 존재x " +
@@ -98,6 +97,9 @@ public class SummonerRestControllerTests {
 
             mockMvc.perform(get(delimitedUrl + NON_EXISTENT_NAME))
                     .andDo(print())
+                    .andExpect(jsonPath("$.profileIconId").doesNotExist())
+                    .andExpect(jsonPath("$.name").doesNotExist())
+                    .andExpect(jsonPath("$.summonerLevel").doesNotExist())
                     .andExpect(status().isOk());
         }
     }
