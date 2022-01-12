@@ -9,13 +9,11 @@ public class RiotApi {
 
     RestTemplate restTemplate = new RestTemplate();
 
-    private final String BASE_URL = "https://kr.api.riotgames.com/";
-
     @Value("${riot.api.key}")
     String apiKey;
 
     public <T> T callApi(String delimitedUrl, Class<T> clazz) {
-        String url = BASE_URL + delimitedUrl + "?api_key=" + apiKey;
+        String url = delimitedUrl + "?api_key=" + apiKey;
         return restTemplate.getForObject(url, clazz);
     }
 }

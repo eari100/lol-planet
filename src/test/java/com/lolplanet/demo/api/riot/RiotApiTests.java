@@ -16,7 +16,7 @@ public class RiotApiTests {
     @Test
     public void 라이엇API에서_소환사_데이터_가져오기() {
         String summonerName = "한남동의 황제";
-        String delimitedUrl = String.format("lol/summoner/v4/summoners/by-name/%s", summonerName);
+        String delimitedUrl = String.format("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%s", summonerName);
 
         SummonerReqDto summonerReqDto = riotApi.callApi(delimitedUrl, SummonerReqDto.class);
 

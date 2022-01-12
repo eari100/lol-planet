@@ -25,10 +25,10 @@ public class SummonerService {
 
         if(summoner.isEmpty()) {
             // riot API 호출
-            String delimitedUrl = String.format("lol/summoner/v4/summoners/by-name/%s", name);
+            String url = String.format("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%s", name);
             SummonerReqDto reqDto;
             try {
-                reqDto = riotApi.callApi(delimitedUrl, SummonerReqDto.class);
+                reqDto = riotApi.callApi(url, SummonerReqDto.class);
             } catch (HttpClientErrorException ex) {
                 return new SummonerResDto();
             }

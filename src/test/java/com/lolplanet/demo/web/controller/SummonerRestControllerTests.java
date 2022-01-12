@@ -35,7 +35,7 @@ public class SummonerRestControllerTests {
             summonerRepository.deleteAll();
         }
 
-        private final String delimitedUrl = "/lol/summoner/v4/summoners/by-name/";
+        private final String BASE_URL = "/lol/summoner/v4/summoners/by-name/";
 
         @Test
         @DisplayName(
@@ -45,7 +45,7 @@ public class SummonerRestControllerTests {
         public void 새로운_데이터가_저장된다() throws Exception {
             final String name = "한남동의 황제";
 
-            mockMvc.perform(get(delimitedUrl + name))
+            mockMvc.perform(get(BASE_URL + name))
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.profileIconId").exists())
@@ -79,7 +79,7 @@ public class SummonerRestControllerTests {
                     .build();
             summonerRepository.save(summoner);
 
-            mockMvc.perform(get(delimitedUrl + name))
+            mockMvc.perform(get(BASE_URL + name))
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.profileIconId", is(profileIconId)))
@@ -95,7 +95,7 @@ public class SummonerRestControllerTests {
         public void DB에_저장되지_않는다() throws Exception {
             final String NON_EXISTENT_NAME = "재욱의환상제드123";
 
-            mockMvc.perform(get(delimitedUrl + NON_EXISTENT_NAME))
+            mockMvc.perform(get(BASE_URL + NON_EXISTENT_NAME))
                     .andDo(print())
                     .andExpect(jsonPath("$.profileIconId").doesNotExist())
                     .andExpect(jsonPath("$.name").doesNotExist())
