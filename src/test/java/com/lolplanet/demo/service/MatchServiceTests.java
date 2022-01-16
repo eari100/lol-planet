@@ -3,6 +3,8 @@ package com.lolplanet.demo.service;
 
 import com.lolplanet.demo.domain.match.Match;
 import com.lolplanet.demo.domain.match.MatchRepository;
+import com.lolplanet.demo.domain.participant.Participant;
+import com.lolplanet.demo.domain.participant.ParticipantRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +23,27 @@ public class MatchServiceTests {
     @Autowired
     private MatchRepository matchRepository;
 
+    @Autowired
+    private ParticipantRepository participantRepository;
+
     @AfterEach
     public void cleanUp() {
+        participantRepository.deleteAll();
         matchRepository.deleteAll();
     }
 
     @Test
     public void 매치_저장() {
-        matchService.save("KR_5664585283");
+        final String GAME_ID = "KR_5664585283";
+        matchService.save(GAME_ID);
         List<Match> matchList = matchRepository.findAll();
         assertThat(matchList.get(0).getId()).isNotNull();
+
+        List<Participant> participantList = participantRepository.findAll();
+        assertThat(participantList.size()).isEqualTo(10);
+
+        for(Participant participant : participantList)
+            assertThat(participant.getMatch().getId()).isEqualTo(matchList.get(0).getId());
     }
 
     @Test
