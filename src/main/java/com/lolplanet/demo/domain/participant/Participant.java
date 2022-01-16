@@ -2,7 +2,6 @@ package com.lolplanet.demo.domain.participant;
 
 import com.lolplanet.demo.domain.BaseTimeEntity;
 import com.lolplanet.demo.domain.match.Match;
-import com.lolplanet.demo.domain.summoner.Summoner;
 
 import javax.persistence.*;
 
@@ -36,8 +35,8 @@ public class Participant extends BaseTimeEntity {
     private Boolean win;
     private String summonerName;
 
-    @ManyToOne
-    private Summoner summoner;
+    @Column(length=56)
+    private String summonerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Match match;
