@@ -48,4 +48,14 @@ public class Summoner extends BaseTimeEntity {
         this.puuid = puuid;
         this.summonerLevel = summonerLevel;
     }
+
+    public void update(String accountId, Integer profileIconId, Long revisionDate, String name, String summonerId, String puuid, Long summonerLevel) {
+        this.accountId = accountId;
+        this.profileIconId = profileIconId;
+        this.revisionDate = revisionDate;
+        this.name = name;
+        this.summonerId = summonerId;
+        this.puuid = puuid;
+        this.summonerLevel = summonerLevel;
+    }
 }

@@ -50,9 +50,13 @@ public class SummonerService {
             return new SummonerResDto();
         }
 
-        // DB에 저장
-        Summoner newSummoner = summonerRepository.save(reqDto.toEntity());
-        return new SummonerResDto(newSummoner);
+        Summoner summoner = summonerRepository.findByName(name)
+                .orElseThrow(() -> new IllegalArgumentException("해당 소환사가 없습니다. name=" + name));
+
+        summoner.update(reqDto.getAccountId(), reqDto.getProfileIconId(), reqDto.getRevisionDate(),
+                reqDto.getName(), reqDto.getSummonerId(), reqDto.getPuuid(), reqDto.getSummonerLevel());
+
+        return new SummonerResDto(summoner);
     }
 
     private SummonerReqDto callSummonerApi(String name) {
