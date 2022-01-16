@@ -11,7 +11,7 @@ public class SummonerReqDto {
     private int profileIconId;
     private long revisionDate;
     private String name;
-    private String id;
+    private String summonerId;
     private String puuid;
     private long summonerLevel;
 
@@ -20,7 +20,7 @@ public class SummonerReqDto {
                 .profileIconId(profileIconId)
                 .revisionDate(revisionDate)
                 .name(name)
-                .summonerId(id)
+                .summonerId(summonerId)
                 .puuid(puuid)
                 .summonerLevel(summonerLevel)
                 .build();
