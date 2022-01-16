@@ -1,5 +1,6 @@
 package com.lolplanet.demo.api.riot.dto.match;
 
+import com.lolplanet.demo.domain.participant.Participant;
 import lombok.Getter;
 
 @Getter
@@ -109,4 +110,31 @@ public class ParticipantReqDto {
     private Integer wardsKilled;
     private Integer wardsPlaced;
     private Boolean win;
+
+    public Participant toEntity() {
+        return Participant.builder()
+                .championId(championId)
+                .teamId(teamId)
+                .summoner1Id(summoner1Id)
+                .summoner2Id(summoner2Id)
+                .item0(item0)
+                .item1(item1)
+                .item2(item2)
+                .item3(item3)
+                .item4(item4)
+                .item5(item5)
+                .item6(item6)
+                .kills(kills)
+                .deaths(deaths)
+                .assists(assists)
+                .champLevel(champLevel)
+                .totalMinionsKilled(totalMinionsKilled)
+                .neutralMinionsKilled(neutralMinionsKilled)
+                .visionWardsBoughtInGame(visionWardsBoughtInGame)
+                .win(win)
+                .summonerName(summonerName)
+                .summonerId(summonerId)
+                .participantId(participantId)
+                .build();
+    }
 }
