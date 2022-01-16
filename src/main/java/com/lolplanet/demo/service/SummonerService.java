@@ -24,11 +24,10 @@ public class SummonerService {
         Optional<Summoner> summoner = summonerRepository.findByName(name);
 
         if(summoner.isEmpty()) {
-            // riot API 호출
-            String url = String.format("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%s", name);
+
             SummonerReqDto reqDto;
             try {
-                reqDto = riotApi.callApi(url, SummonerReqDto.class);
+                reqDto = callSummonerApi(name);
             } catch (HttpClientErrorException ex) {
                 return new SummonerResDto();
             }
@@ -39,5 +38,26 @@ public class SummonerService {
         } else {
             return new SummonerResDto(summoner.get());
         }
+    }
+
+    @Transactional
+    public SummonerResDto update(String name) {
+
+        SummonerReqDto reqDto;
+        try {
+            reqDto = callSummonerApi(name);
+        } catch (HttpClientErrorException ex) {
+            return new SummonerResDto();
+        }
+
+        // DB에 저장
+        Summoner newSummoner = summonerRepository.save(reqDto.toEntity());
+        return new SummonerResDto(newSummoner);
+    }
+
+    private SummonerReqDto callSummonerApi(String name) {
+        // riot API 호출
+        String url = String.format("https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%s", name);
+        return riotApi.callApi(url, SummonerReqDto.class);
     }
 }
