@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MatchService {
@@ -22,6 +24,15 @@ public class MatchService {
         try {
             MatchReqDto matchReqDto = riotApi.callApi(url, MatchReqDto.class);
             return matchRepository.save(matchReqDto.toEntity()).getId();
+        } catch (HttpClientErrorException ex) {
+            throw ex;
+        }
+    }
+
+    public List<String> findMatchList(String puuid, int start, int count) {
+        String url = String.format("https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/%s/ids?start=%d&count=%d", puuid, start, count);
+        try {
+            return  riotApi.callApi(url, List.class);
         } catch (HttpClientErrorException ex) {
             throw ex;
         }
