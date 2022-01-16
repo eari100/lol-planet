@@ -1,5 +1,6 @@
-package com.lolplanet.demo.domain;
+package com.lolplanet.demo.domain.participant;
 
+import com.lolplanet.demo.domain.BaseTimeEntity;
 import com.lolplanet.demo.domain.match.Match;
 import com.lolplanet.demo.domain.summoner.Summoner;
 

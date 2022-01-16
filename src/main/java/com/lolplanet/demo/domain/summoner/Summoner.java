@@ -1,7 +1,7 @@
 package com.lolplanet.demo.domain.summoner;
 
 import com.lolplanet.demo.domain.BaseTimeEntity;
-import com.lolplanet.demo.domain.Participant;
+import com.lolplanet.demo.domain.participant.Participant;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
