@@ -1,13 +1,11 @@
 package com.lolplanet.demo.domain.summoner;
 
 import com.lolplanet.demo.domain.BaseTimeEntity;
-import com.lolplanet.demo.domain.participant.Participant;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -34,9 +32,6 @@ public class Summoner extends BaseTimeEntity {
     private String puuid;
 
     private Long summonerLevel;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "summoner")
-    private List<Participant> participants;
 
     @Builder
     public Summoner(String accountId, Integer profileIconId, Long revisionDate, String name, String summonerId, String puuid, Long summonerLevel) {
