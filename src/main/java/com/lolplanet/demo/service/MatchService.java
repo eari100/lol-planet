@@ -24,7 +24,7 @@ public class MatchService {
     private final RiotApi riotApi;
 
     @Transactional
-    public Long save(String matchId) {
+    public Long saveMatchAndParticipant(String matchId) {
         String url = String.format("https://asia.api.riotgames.com/lol/match/v5/matches/%s", matchId);
 
         try {

@@ -35,7 +35,7 @@ public class MatchServiceTests {
     @Test
     public void 매치_저장() {
         final String GAME_ID = "KR_5664585283";
-        matchService.save(GAME_ID);
+        matchService.saveMatchAndParticipant(GAME_ID);
         List<Match> matchList = matchRepository.findAll();
         assertThat(matchList.get(0).getId()).isNotNull();
 
