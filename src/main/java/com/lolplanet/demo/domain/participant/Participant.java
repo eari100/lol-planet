@@ -44,6 +44,7 @@ public class Participant extends BaseTimeEntity {
     private String summonerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "match_id")
     private Match match;
 
     // 1 ~ 10

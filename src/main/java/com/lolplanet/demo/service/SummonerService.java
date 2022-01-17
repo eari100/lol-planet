@@ -54,7 +54,7 @@ public class SummonerService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 소환사가 없습니다. name=" + name));
 
         summoner.update(reqDto.getAccountId(), reqDto.getProfileIconId(), reqDto.getRevisionDate(),
-                reqDto.getName(), reqDto.getSummonerId(), reqDto.getPuuid(), reqDto.getSummonerLevel());
+                reqDto.getName(), reqDto.getPuuid(), reqDto.getSummonerLevel());
 
         return new SummonerResDto(summoner);
     }

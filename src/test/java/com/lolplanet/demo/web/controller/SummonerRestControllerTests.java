@@ -27,7 +27,7 @@ public class SummonerRestControllerTests {
     private SummonerRepository summonerRepository;
 
     @Nested
-    @DisplayName("findByName 메서드")
+    @DisplayName("findByName method")
     class findByNameTest {
 
         @AfterEach
@@ -63,7 +63,7 @@ public class SummonerRestControllerTests {
             final Integer profileIconId = 4001;
             final Long revisionDate = 1641028234000L;
             final String name = "한남동의 황제";
-            final String summonerId = "0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo";
+            final String id = "0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo";
             final String puuid = "Lp57gEFg0CgfVoALp1vY3RI75siUxQGolH6k0y6X2KCjnHQPdIAbooPBMNcTw-qMn9xbQfIdCT1kng";
             // 현재 레벨보다 낮은 레벨
             final Long pastSummonerLevel = 100L;
@@ -73,7 +73,7 @@ public class SummonerRestControllerTests {
                     .profileIconId(profileIconId)
                     .revisionDate(revisionDate)
                     .name(name)
-                    .summonerId(summonerId)
+                    .id(id)
                     .puuid(puuid)
                     .summonerLevel(pastSummonerLevel)
                     .build();

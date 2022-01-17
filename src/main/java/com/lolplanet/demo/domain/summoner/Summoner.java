@@ -13,8 +13,8 @@ import javax.persistence.*;
 public class Summoner extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(length=56)
+    private String id;
 
     @Column(length=56)
     private String accountId;
@@ -25,31 +25,27 @@ public class Summoner extends BaseTimeEntity {
 
     private String name;
 
-    @Column(length=56)
-    private String summonerId;
-
     @Column(length=78)
     private String puuid;
 
     private Long summonerLevel;
 
     @Builder
-    public Summoner(String accountId, Integer profileIconId, Long revisionDate, String name, String summonerId, String puuid, Long summonerLevel) {
+    public Summoner(String id, String accountId, Integer profileIconId, Long revisionDate, String name, String puuid, Long summonerLevel) {
+        this.id = id;
         this.accountId = accountId;
         this.profileIconId = profileIconId;
         this.revisionDate = revisionDate;
         this.name = name;
-        this.summonerId = summonerId;
         this.puuid = puuid;
         this.summonerLevel = summonerLevel;
     }
 
-    public void update(String accountId, Integer profileIconId, Long revisionDate, String name, String summonerId, String puuid, Long summonerLevel) {
+    public void update(String accountId, Integer profileIconId, Long revisionDate, String name, String puuid, Long summonerLevel) {
         this.accountId = accountId;
         this.profileIconId = profileIconId;
         this.revisionDate = revisionDate;
         this.name = name;
-        this.summonerId = summonerId;
         this.puuid = puuid;
         this.summonerLevel = summonerLevel;
     }

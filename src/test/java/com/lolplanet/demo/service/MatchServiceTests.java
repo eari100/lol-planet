@@ -37,13 +37,13 @@ public class MatchServiceTests {
         final String GAME_ID = "KR_5664585283";
         matchService.saveMatchAndParticipant(GAME_ID);
         List<Match> matchList = matchRepository.findAll();
-        assertThat(matchList.get(0).getId()).isNotNull();
+        assertThat(matchList.get(0).getGameId()).isNotNull();
 
         List<Participant> participantList = participantRepository.findAll();
         assertThat(participantList.size()).isEqualTo(10);
 
         for(Participant participant : participantList)
-            assertThat(participant.getMatch().getId()).isEqualTo(matchList.get(0).getId());
+            assertThat(participant.getMatch().getGameId()).isEqualTo(matchList.get(0).getGameId());
     }
 
     @Test

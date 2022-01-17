@@ -44,7 +44,7 @@ public class MatchService {
 
             participantRepository.saveAll(participants);
 
-            return match.getId();
+            return match.getGameId();
         } catch (HttpClientErrorException ex) {
             throw ex;
         }
