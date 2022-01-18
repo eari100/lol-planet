@@ -1,12 +1,15 @@
 package com.lolplanet.demo.domain.match;
 
 import com.lolplanet.demo.domain.BaseTimeEntity;
+import com.lolplanet.demo.domain.participant.Participant;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -19,6 +22,9 @@ public class Match extends BaseTimeEntity {
     private String platformId;
     private Long gameCreation;
     private Long gameDuration;
+
+    @OneToMany(mappedBy = "match")
+    private List<Participant> participants;
 
     @Builder
     public Match(Long gameId, Integer queueId, String platformId, Long gameCreation, Long gameDuration) {
