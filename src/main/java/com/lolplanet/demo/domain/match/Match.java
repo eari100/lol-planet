@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -24,7 +25,7 @@ public class Match extends BaseTimeEntity {
     private Long gameDuration;
 
     @OneToMany(mappedBy = "match")
-    private List<Participant> participants;
+    private List<Participant> participants = new ArrayList<>();
 
     @Builder
     public Match(Long gameId, Integer queueId, String platformId, Long gameCreation, Long gameDuration) {
