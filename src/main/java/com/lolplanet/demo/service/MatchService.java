@@ -50,7 +50,7 @@ public class MatchService {
         }
     }
 
-    public List<String> findMatchList(String puuid, int start, int count) {
+    public List<String> findGameIdList(String puuid, int start, int count) {
         String url = String.format("https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/%s/ids?start=%d&count=%d", puuid, start, count);
         try {
             return  riotApi.callApi(url, List.class);

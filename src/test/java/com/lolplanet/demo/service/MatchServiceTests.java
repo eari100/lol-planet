@@ -48,7 +48,7 @@ public class MatchServiceTests {
 
     @Test
     public void 소환사의_매치리스트_조회() {
-        List<String> matchList = matchService.findMatchList("Lp57gEFg0CgfVoALp1vY3RI75siUxQGolH6k0y6X2KCjnHQPdIAbooPBMNcTw-qMn9xbQfIdCT1kng", 0, 20);
+        List<String> matchList = matchService.findGameIdList("Lp57gEFg0CgfVoALp1vY3RI75siUxQGolH6k0y6X2KCjnHQPdIAbooPBMNcTw-qMn9xbQfIdCT1kng", 0, 20);
         assertThat(matchList.size()).isEqualTo(20);
     }
 }
