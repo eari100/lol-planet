@@ -40,7 +40,7 @@ public class Participant extends BaseTimeEntity {
     private Boolean win;
     private String summonerName;
 
-    @Column(length=56)
+    @Column(length=63)
     private String summonerId;
 
     @ManyToOne(fetch = FetchType.LAZY)

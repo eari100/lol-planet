@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Summoner extends BaseTimeEntity {
 
     @Id
-    @Column(length=56)
+    @Column(length=63)
     private String id;
 
     @Column(length=56)
