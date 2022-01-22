@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -72,8 +73,6 @@ public class MatchRepositoryTests {
                 .participantId(1)
                 .build();
 
-        participantRepository.save(participant1);
-
         Participant participant2 = Participant.builder()
                 .championId(350)
                 .teamId(100)
@@ -99,8 +98,6 @@ public class MatchRepositoryTests {
                 .match(lazyMatch1)
                 .participantId(2)
                 .build();
-
-        participantRepository.save(participant2);
 
         Participant participant3 = Participant.builder()
                 .championId(101)
@@ -128,8 +125,6 @@ public class MatchRepositoryTests {
                 .participantId(3)
                 .build();
 
-        participantRepository.save(participant3);
-
         Participant participant4 = Participant.builder()
                 .championId(23)
                 .teamId(100)
@@ -155,8 +150,6 @@ public class MatchRepositoryTests {
                 .match(lazyMatch1)
                 .participantId(4)
                 .build();
-
-        participantRepository.save(participant4);
 
         Participant participant5 = Participant.builder()
                 .championId(11)
@@ -184,8 +177,6 @@ public class MatchRepositoryTests {
                 .participantId(5)
                 .build();
 
-        participantRepository.save(participant5);
-
         Participant participant6 = Participant.builder()
                 .championId(555)
                 .teamId(200)
@@ -211,8 +202,6 @@ public class MatchRepositoryTests {
                 .match(lazyMatch1)
                 .participantId(6)
                 .build();
-
-        participantRepository.save(participant6);
 
         Participant participant7 = Participant.builder()
                 .championId(106)
@@ -240,8 +229,6 @@ public class MatchRepositoryTests {
                 .participantId(7)
                 .build();
 
-        participantRepository.save(participant7);
-
         Participant participant8 = Participant.builder()
                 .championId(875)
                 .teamId(200)
@@ -267,8 +254,6 @@ public class MatchRepositoryTests {
                 .match(lazyMatch1)
                 .participantId(8)
                 .build();
-
-        participantRepository.save(participant8);
 
         Participant participant9 = Participant.builder()
                 .championId(157)
@@ -296,8 +281,6 @@ public class MatchRepositoryTests {
                 .participantId(9)
                 .build();
 
-        participantRepository.save(participant9);
-
         Participant participant10 = Participant.builder()
                 .championId(360)
                 .teamId(200)
@@ -324,7 +307,11 @@ public class MatchRepositoryTests {
                 .participantId(10)
                 .build();
 
-        participantRepository.save(participant10);
+        List<Participant> participants = Arrays.asList(
+                participant1, participant2, participant3, participant4, participant5,
+                participant6, participant7, participant8, participant9, participant10);
+
+        participantRepository.saveAll(participants);
 
         final int count = 1;
 
