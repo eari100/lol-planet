@@ -26,7 +26,7 @@ public class MatchService {
 
     public void renew(String puuid, int start, int count) {
         List<String> gameIds = findGameIdList(puuid, start, count);
-        gameIds.stream().forEach(this::saveMatchAndParticipant);
+        gameIds.parallelStream().forEach(this::saveMatchAndParticipant);
     }
 
     @Transactional
