@@ -24,6 +24,11 @@ public class MatchService {
     private final ParticipantRepository participantRepository;
     private final RiotApi riotApi;
 
+    public void renew(String puuid, int start, int count) {
+        List<String> gameIds = findGameIdList(puuid, start, count);
+        gameIds.stream().forEach(this::saveMatchAndParticipant);
+    }
+
     @Transactional
     public Long saveMatchAndParticipant(String matchId) {
         String url = String.format("https://asia.api.riotgames.com/lol/match/v5/matches/%s", matchId);

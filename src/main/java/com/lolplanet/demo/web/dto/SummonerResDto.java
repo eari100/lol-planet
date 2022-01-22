@@ -10,10 +10,12 @@ public class SummonerResDto {
     private Integer profileIconId;
     private String name;
     private Long summonerLevel;
+    private String puuid;
 
     public SummonerResDto(Summoner entity) {
         this.profileIconId = entity.getProfileIconId();
         this.name = entity.getName();
         this.summonerLevel = entity.getSummonerLevel();
+        this.puuid = entity.getPuuid();
     }
 }
