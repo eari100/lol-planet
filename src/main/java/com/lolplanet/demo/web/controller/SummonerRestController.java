@@ -22,6 +22,6 @@ public class SummonerRestController {
     @PostMapping("/renew/by-name/{summonerName}")
     public void renew(@PathVariable("summonerName") String summonerName) {
         SummonerResDto summonerResDto = summonerService.update(summonerName);
-        matchService.renew(summonerResDto.getPuuid(), 0, 1);
+        matchService.renew(summonerResDto.getPuuid(), 0, 20);
     }
 }
