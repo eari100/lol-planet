@@ -43,7 +43,7 @@ public class MatchServiceTests {
         assertThat(participantList.size()).isEqualTo(10);
 
         for(Participant participant : participantList)
-            assertThat(participant.getMatch().getGameId()).isEqualTo(matchList.get(0).getGameId());
+            assertThat(participant.getId().getMatch().getGameId()).isEqualTo(matchList.get(0).getGameId());
     }
 
     @Test

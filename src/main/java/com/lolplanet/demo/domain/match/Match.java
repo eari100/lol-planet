@@ -24,7 +24,7 @@ public class Match extends BaseTimeEntity {
     private Long gameCreation;
     private Long gameDuration;
 
-    @OneToMany(mappedBy = "match")
+    @OneToMany(mappedBy = "id.match")
     private List<Participant> participants = new ArrayList<>();
 
     @Builder

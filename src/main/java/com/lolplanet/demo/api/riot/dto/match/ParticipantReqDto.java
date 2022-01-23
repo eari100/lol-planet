@@ -1,6 +1,8 @@
 package com.lolplanet.demo.api.riot.dto.match;
 
+import com.lolplanet.demo.domain.match.Match;
 import com.lolplanet.demo.domain.participant.Participant;
+import com.lolplanet.demo.domain.participant.ParticipantId;
 import lombok.Getter;
 
 @Getter
@@ -111,7 +113,7 @@ public class ParticipantReqDto {
     private Integer wardsPlaced;
     private Boolean win;
 
-    public Participant toEntity() {
+    public Participant toEntity(Match match) {
         return Participant.builder()
                 .championId(championId)
                 .teamId(teamId)
@@ -133,7 +135,7 @@ public class ParticipantReqDto {
                 .visionWardsBoughtInGame(visionWardsBoughtInGame)
                 .win(win)
                 .summonerName(summonerName)
-                .summonerId(summonerId)
+                .id(new ParticipantId(summonerId, match))
                 .participantId(participantId)
                 .build();
     }

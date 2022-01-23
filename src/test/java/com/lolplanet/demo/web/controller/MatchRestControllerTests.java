@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.lolplanet.demo.domain.match.Match;
 import com.lolplanet.demo.domain.match.MatchRepository;
 import com.lolplanet.demo.domain.participant.Participant;
+import com.lolplanet.demo.domain.participant.ParticipantId;
 import com.lolplanet.demo.domain.participant.ParticipantRepository;
 import com.lolplanet.demo.web.dto.MatchListReqDto;
 import org.junit.jupiter.api.AfterEach;
@@ -15,6 +16,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -75,12 +79,9 @@ public class MatchRestControllerTests {
                 .visionWardsBoughtInGame(0)
                 .win(false)
                 .summonerName("유땡글돌머리")
-                .summonerId("Q3WiCl2U9gEiDt92dcALahBD21dyRyy7NwyyeKx9TfH42PK3")
-                .match(lazyMatch1)
+                .id(new ParticipantId("Q3WiCl2U9gEiDt92dcALahBD21dyRyy7NwyyeKx9TfH42PK3", lazyMatch1))
                 .participantId(1)
                 .build();
-
-        participantRepository.save(participant1);
 
         Participant participant2 = Participant.builder()
                 .championId(350)
@@ -103,12 +104,9 @@ public class MatchRestControllerTests {
                 .visionWardsBoughtInGame(0)
                 .win(false)
                 .summonerName("sunyy")
-                .summonerId("wUIRBztF3yQVEqMqaIeMkJXdCgO--ScoLTm0ElpzZcozoQ")
-                .match(lazyMatch1)
+                .id(new ParticipantId("wUIRBztF3yQVEqMqaIeMkJXdCgO--ScoLTm0ElpzZcozoQ", lazyMatch1))
                 .participantId(2)
                 .build();
-
-        participantRepository.save(participant2);
 
         Participant participant3 = Participant.builder()
                 .championId(101)
@@ -131,12 +129,9 @@ public class MatchRestControllerTests {
                 .visionWardsBoughtInGame(0)
                 .win(false)
                 .summonerName("윤석현3")
-                .summonerId("3-IsNMNIVy30ldzJfegVCNdDNbinslhGOf1siYh3-XiXwOc")
-                .match(lazyMatch1)
+                .id(new ParticipantId("3-IsNMNIVy30ldzJfegVCNdDNbinslhGOf1siYh3-XiXwOc", lazyMatch1))
                 .participantId(3)
                 .build();
-
-        participantRepository.save(participant3);
 
         Participant participant4 = Participant.builder()
                 .championId(23)
@@ -159,12 +154,9 @@ public class MatchRestControllerTests {
                 .visionWardsBoughtInGame(4)
                 .win(false)
                 .summonerName("겐지나")
-                .summonerId("5BnI19qqt-tNMOpRlCMu0MG2FcLOfec1qQQpZZc8NOFi8Xo")
-                .match(lazyMatch1)
+                .id(new ParticipantId("5BnI19qqt-tNMOpRlCMu0MG2FcLOfec1qQQpZZc8NOFi8Xo", lazyMatch1))
                 .participantId(4)
                 .build();
-
-        participantRepository.save(participant4);
 
         Participant participant5 = Participant.builder()
                 .championId(11)
@@ -187,12 +179,9 @@ public class MatchRestControllerTests {
                 .visionWardsBoughtInGame(4)
                 .win(false)
                 .summonerName("0민수")
-                .summonerId("zWJ-do6nOElM_4odEmMB-ATSYI525sU_cMfjPway6aBoJs8")
-                .match(lazyMatch1)
+                .id(new ParticipantId("zWJ-do6nOElM_4odEmMB-ATSYI525sU_cMfjPway6aBoJs8", lazyMatch1))
                 .participantId(5)
                 .build();
-
-        participantRepository.save(participant5);
 
         Participant participant6 = Participant.builder()
                 .championId(555)
@@ -215,12 +204,9 @@ public class MatchRestControllerTests {
                 .visionWardsBoughtInGame(4)
                 .win(true)
                 .summonerName("HarmlesScarecrow")
-                .summonerId("WS7xjzZDbSGeVZAu1OrMXwxJlZo9nngTtyLPiblq3D7Jmmw")
-                .match(lazyMatch1)
+                .id(new ParticipantId("WS7xjzZDbSGeVZAu1OrMXwxJlZo9nngTtyLPiblq3D7Jmmw", lazyMatch1))
                 .participantId(6)
                 .build();
-
-        participantRepository.save(participant6);
 
         Participant participant7 = Participant.builder()
                 .championId(106)
@@ -243,12 +229,9 @@ public class MatchRestControllerTests {
                 .visionWardsBoughtInGame(4)
                 .win(true)
                 .summonerName("사과티비개발자")
-                .summonerId("6II0yzTrICAMCf9Q2gBEKnY_T3goExoww8J8DCHYSK56f64")
-                .match(lazyMatch1)
+                .id(new ParticipantId("6II0yzTrICAMCf9Q2gBEKnY_T3goExoww8J8DCHYSK56f64", lazyMatch1))
                 .participantId(7)
                 .build();
-
-        participantRepository.save(participant7);
 
         Participant participant8 = Participant.builder()
                 .championId(875)
@@ -271,12 +254,9 @@ public class MatchRestControllerTests {
                 .visionWardsBoughtInGame(4)
                 .win(true)
                 .summonerName("니노는사랑입니다")
-                .summonerId("wF99smx6fsE8hOAuhSm96R_0CJkJpgoy7tGT6eCqxFLQR50")
-                .match(lazyMatch1)
+                .id(new ParticipantId("wF99smx6fsE8hOAuhSm96R_0CJkJpgoy7tGT6eCqxFLQR50", lazyMatch1))
                 .participantId(8)
                 .build();
-
-        participantRepository.save(participant8);
 
         Participant participant9 = Participant.builder()
                 .championId(157)
@@ -299,12 +279,9 @@ public class MatchRestControllerTests {
                 .visionWardsBoughtInGame(4)
                 .win(true)
                 .summonerName("한남동의 황제")
-                .summonerId("0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo")
-                .match(lazyMatch1)
+                .id(new ParticipantId("0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo", lazyMatch1))
                 .participantId(9)
                 .build();
-
-        participantRepository.save(participant9);
 
         Participant participant10 = Participant.builder()
                 .championId(360)
@@ -327,12 +304,15 @@ public class MatchRestControllerTests {
                 .visionWardsBoughtInGame(4)
                 .win(true)
                 .summonerName("T1 Thinking")
-                .summonerId("F0u8AV4C0nEIprSMA24B4KSBqpgkDEtCelzUNiIF2Wnp8Lw")
-                .match(lazyMatch1)
+                .id(new ParticipantId("F0u8AV4C0nEIprSMA24B4KSBqpgkDEtCelzUNiIF2Wnp8Lw", lazyMatch1))
                 .participantId(10)
                 .build();
 
-        participantRepository.save(participant10);
+        List<Participant> participants = Arrays.asList(
+                participant1, participant2, participant3, participant4, participant5,
+                participant6, participant7, participant8, participant9, participant10);
+
+        participantRepository.saveAll(participants);
 
         MatchListReqDto dto = new MatchListReqDto(0, 20);
 

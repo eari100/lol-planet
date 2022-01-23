@@ -1,21 +1,20 @@
 package com.lolplanet.demo.domain.participant;
 
 import com.lolplanet.demo.domain.BaseTimeEntity;
-import com.lolplanet.demo.domain.match.Match;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 
 @Getter
 @NoArgsConstructor
 @Entity
 public class Participant extends BaseTimeEntity {
+    @EmbeddedId
+    private ParticipantId id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private Integer championId;
     private Integer teamId;
 
@@ -40,13 +39,6 @@ public class Participant extends BaseTimeEntity {
     private Boolean win;
     private String summonerName;
 
-    @Column(length=63)
-    private String summonerId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "match_id")
-    private Match match;
-
     // 1 ~ 10
     private Integer participantId;
 
@@ -55,7 +47,7 @@ public class Participant extends BaseTimeEntity {
             Integer item0, Integer item1, Integer item2, Integer item3, Integer item4, Integer item5, Integer item6,
             Integer kills, Integer deaths, Integer assists, Integer champLevel,
             Integer totalMinionsKilled, Integer neutralMinionsKilled, Integer visionWardsBoughtInGame,
-            Boolean win, String summonerName, String summonerId, Match match, Integer participantId) {
+            Boolean win, String summonerName, ParticipantId id, Integer participantId) {
 
         this.championId = championId;
         this.teamId = teamId;
@@ -77,12 +69,7 @@ public class Participant extends BaseTimeEntity {
         this.visionWardsBoughtInGame = visionWardsBoughtInGame;
         this.win = win;
         this.summonerName = summonerName;
-        this.summonerId = summonerId;
-        this.match = match;
+        this.id = id;
         this.participantId = participantId;
-    }
-
-    public void setMatch(Match match) {
-        this.match = match;
     }
 }

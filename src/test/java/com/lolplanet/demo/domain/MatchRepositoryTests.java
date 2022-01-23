@@ -3,6 +3,7 @@ package com.lolplanet.demo.domain;
 import com.lolplanet.demo.domain.match.Match;
 import com.lolplanet.demo.domain.match.MatchRepository;
 import com.lolplanet.demo.domain.participant.Participant;
+import com.lolplanet.demo.domain.participant.ParticipantId;
 import com.lolplanet.demo.domain.participant.ParticipantRepository;
 import com.lolplanet.demo.web.dto.MatchListResDto;
 import com.lolplanet.demo.web.dto.MatchResDto;
@@ -68,8 +69,7 @@ public class MatchRepositoryTests {
                 .visionWardsBoughtInGame(0)
                 .win(false)
                 .summonerName("유땡글돌머리")
-                .summonerId("Q3WiCl2U9gEiDt92dcALahBD21dyRyy7NwyyeKx9TfH42PK3")
-                .match(lazyMatch1)
+                .id(new ParticipantId("Q3WiCl2U9gEiDt92dcALahBD21dyRyy7NwyyeKx9TfH42PK3", lazyMatch1))
                 .participantId(1)
                 .build();
 
@@ -94,8 +94,7 @@ public class MatchRepositoryTests {
                 .visionWardsBoughtInGame(0)
                 .win(false)
                 .summonerName("sunyy")
-                .summonerId("wUIRBztF3yQVEqMqaIeMkJXdCgO--ScoLTm0ElpzZcozoQ")
-                .match(lazyMatch1)
+                .id(new ParticipantId("wUIRBztF3yQVEqMqaIeMkJXdCgO--ScoLTm0ElpzZcozoQ", lazyMatch1))
                 .participantId(2)
                 .build();
 
@@ -120,8 +119,7 @@ public class MatchRepositoryTests {
                 .visionWardsBoughtInGame(0)
                 .win(false)
                 .summonerName("윤석현3")
-                .summonerId("3-IsNMNIVy30ldzJfegVCNdDNbinslhGOf1siYh3-XiXwOc")
-                .match(lazyMatch1)
+                .id(new ParticipantId("3-IsNMNIVy30ldzJfegVCNdDNbinslhGOf1siYh3-XiXwOc", lazyMatch1))
                 .participantId(3)
                 .build();
 
@@ -146,8 +144,7 @@ public class MatchRepositoryTests {
                 .visionWardsBoughtInGame(4)
                 .win(false)
                 .summonerName("겐지나")
-                .summonerId("5BnI19qqt-tNMOpRlCMu0MG2FcLOfec1qQQpZZc8NOFi8Xo")
-                .match(lazyMatch1)
+                .id(new ParticipantId("5BnI19qqt-tNMOpRlCMu0MG2FcLOfec1qQQpZZc8NOFi8Xo", lazyMatch1))
                 .participantId(4)
                 .build();
 
@@ -172,8 +169,7 @@ public class MatchRepositoryTests {
                 .visionWardsBoughtInGame(4)
                 .win(false)
                 .summonerName("0민수")
-                .summonerId("zWJ-do6nOElM_4odEmMB-ATSYI525sU_cMfjPway6aBoJs8")
-                .match(lazyMatch1)
+                .id(new ParticipantId("zWJ-do6nOElM_4odEmMB-ATSYI525sU_cMfjPway6aBoJs8", lazyMatch1))
                 .participantId(5)
                 .build();
 
@@ -198,8 +194,7 @@ public class MatchRepositoryTests {
                 .visionWardsBoughtInGame(4)
                 .win(true)
                 .summonerName("HarmlesScarecrow")
-                .summonerId("WS7xjzZDbSGeVZAu1OrMXwxJlZo9nngTtyLPiblq3D7Jmmw")
-                .match(lazyMatch1)
+                .id(new ParticipantId("WS7xjzZDbSGeVZAu1OrMXwxJlZo9nngTtyLPiblq3D7Jmmw", lazyMatch1))
                 .participantId(6)
                 .build();
 
@@ -224,8 +219,7 @@ public class MatchRepositoryTests {
                 .visionWardsBoughtInGame(4)
                 .win(true)
                 .summonerName("사과티비개발자")
-                .summonerId("6II0yzTrICAMCf9Q2gBEKnY_T3goExoww8J8DCHYSK56f64")
-                .match(lazyMatch1)
+                .id(new ParticipantId("6II0yzTrICAMCf9Q2gBEKnY_T3goExoww8J8DCHYSK56f64", lazyMatch1))
                 .participantId(7)
                 .build();
 
@@ -250,8 +244,7 @@ public class MatchRepositoryTests {
                 .visionWardsBoughtInGame(4)
                 .win(true)
                 .summonerName("니노는사랑입니다")
-                .summonerId("wF99smx6fsE8hOAuhSm96R_0CJkJpgoy7tGT6eCqxFLQR50")
-                .match(lazyMatch1)
+                .id(new ParticipantId("wF99smx6fsE8hOAuhSm96R_0CJkJpgoy7tGT6eCqxFLQR50", lazyMatch1))
                 .participantId(8)
                 .build();
 
@@ -276,8 +269,7 @@ public class MatchRepositoryTests {
                 .visionWardsBoughtInGame(4)
                 .win(true)
                 .summonerName("한남동의 황제")
-                .summonerId("0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo")
-                .match(lazyMatch1)
+                .id(new ParticipantId("0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo", lazyMatch1))
                 .participantId(9)
                 .build();
 
@@ -302,8 +294,7 @@ public class MatchRepositoryTests {
                 .visionWardsBoughtInGame(4)
                 .win(true)
                 .summonerName("T1 Thinking")
-                .summonerId("F0u8AV4C0nEIprSMA24B4KSBqpgkDEtCelzUNiIF2Wnp8Lw")
-                .match(lazyMatch1)
+                .id(new ParticipantId("F0u8AV4C0nEIprSMA24B4KSBqpgkDEtCelzUNiIF2Wnp8Lw", lazyMatch1))
                 .participantId(10)
                 .build();
 

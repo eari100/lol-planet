@@ -41,11 +41,7 @@ public class MatchService {
             List<ParticipantReqDto> participantReqDtos = matchReqDto.getInfo().getParticipants();
 
             List<Participant> participants = participantReqDtos.stream()
-                    .map(ParticipantReqDto::toEntity)
-                    .collect(Collectors.toList());
-
-            participants = participants.stream()
-                    .peek(x -> x.setMatch(match))
+                    .map(p -> p.toEntity(match))
                     .collect(Collectors.toList());
 
             participantRepository.saveAll(participants);
