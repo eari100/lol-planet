@@ -163,4 +163,45 @@ public class SummonerRestControllerTests {
         List<Participant> participants = participantRepository.findAll();
         assertThat(participants.size()).isGreaterThan(9); // 소환사는 최소 10명
     }
+
+    @Test
+    public void match_participant_데이터_renew_API_2번_호출_시_중복_데이터는_등록되지_않는다() throws Exception {
+        final String accountId = "vXUy9xx-2r13SGuV0gdvnJPM8hGWhAKNekdH7QHtraAi";
+        final Integer profileIconId = 4001;
+        final Long revisionDate = 1641028234000L;
+        final String name = "한남동의 황제";
+        final String id = "0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo";
+        final String puuid = "Lp57gEFg0CgfVoALp1vY3RI75siUxQGolH6k0y6X2KCjnHQPdIAbooPBMNcTw-qMn9xbQfIdCT1kng";
+        // 현재 레벨보다 낮은 레벨
+        final Long pastSummonerLevel = 100L;
+
+        Summoner summoner = Summoner.builder()
+                .accountId(accountId)
+                .profileIconId(profileIconId)
+                .revisionDate(revisionDate)
+                .name(name)
+                .id(id)
+                .puuid(puuid)
+                .summonerLevel(pastSummonerLevel)
+                .build();
+        summonerRepository.save(summoner);
+
+        // renew 2번 실행
+        mockMvc.perform(post("/lol/summoner/renew/by-name/" + name))
+                .andDo(print())
+                .andExpect(status().isOk());
+        mockMvc.perform(post("/lol/summoner/renew/by-name/" + name))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+        Summoner updatedSummoner = summonerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 소환사가 없습니다 id=" + id));
+        assertThat(updatedSummoner.getSummonerLevel()).isGreaterThan(pastSummonerLevel);
+
+        List<Match> matches = matchRepository.findAll();
+        assertThat(matches.size()).isEqualTo(20);
+
+        List<Participant> participants = participantRepository.findAll();
+        assertThat(participants.size()).isEqualTo(200);
+    }
 }
