@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragment/header :: commonHeader"></th:block>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+</head>
+<body>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-review">리뷰</a></li>
+            <li><a href="#tabs-match">전적</a></li>
+        </ul>
+        <div id="tabs-review">
+            <p>준비 중 입니다...</p>
+        </div>
+        <div id="tabs-match">
+            <p>여기도 준비 중입니다...</p>
+        </div>
+    </div>
+
+    <th:block th:replace="fragment/footer :: commonFooter"></th:block>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script src="js/summoner-detail.js"></script>
+</body>
+</html>
