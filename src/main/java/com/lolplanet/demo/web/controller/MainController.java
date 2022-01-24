@@ -10,4 +10,9 @@ public class MainController {
     public String main() {
         return "main";
     }
+
+    @GetMapping("/userName={name}")
+    public String summonerDetail() {
+        return "summoner-detail";
+    }
 }
