@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>LOLplanet</title>
-
+    <th:block th:replace="fragment/header :: commonHeader"></th:block>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -15,10 +13,10 @@
             <img src='/img/logo.png' class="Image">
         </div>
     </div>
-    <form>
-        <div>
-            <input type="text" id="summonerName" class="summoner-search-form__text _suggest" placeholder="소환사명" autocomplete="off">
-        </div>
-    </form>
+
+    <input type="text" id="summonerName" class="summoner-search-form__text _suggest" placeholder="소환사명" autocomplete="off">
+
+    <th:block th:replace="fragment/footer :: commonFooter"></th:block>
+    <script src="js/main.js"></script>
 </body>
 </html>
