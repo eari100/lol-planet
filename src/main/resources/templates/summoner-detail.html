@@ -3,8 +3,19 @@
 <head>
     <th:block th:replace="fragment/header :: commonHeader"></th:block>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/summoner-detail.css">
+    <input type="hidden" id="summonerName" th:value="${summonerName}">
 </head>
 <body>
+
+    <div class="summoner_info_box">
+        <div class="summoner_profile"></div>
+        <div>
+            <div class="summoner_name"></div>
+            <div class="summoner_level"></div>
+        </div>
+    </div>
+
     <div id="tabs">
         <ul>
             <li><a href="#tabs-review">리뷰</a></li>
