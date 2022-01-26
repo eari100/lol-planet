@@ -9,14 +9,16 @@ import java.util.stream.Collectors;
 
 @Getter
 public class MatchResDto {
-    private Integer queueId;
+    private String mapName;
     private String platformId;
     private Long gameCreation;
     private Long gameDuration;
     private List<ParticipantResDto> participantResDtos = new ArrayList<>();
 
     public MatchResDto(Match entity) {
-        this.queueId = entity.getQueueId();
+        DbColumnConverter converter = new DbColumnConverter();
+
+        this.mapName = converter.convertToMapName(entity.getQueueId());
         this.platformId = entity.getPlatformId();
         this.gameCreation = entity.getGameCreation();
         this.gameDuration = entity.getGameDuration();
