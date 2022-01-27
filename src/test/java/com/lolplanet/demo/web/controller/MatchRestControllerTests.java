@@ -1,21 +1,18 @@
 package com.lolplanet.demo.web.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.lolplanet.demo.domain.match.Match;
 import com.lolplanet.demo.domain.match.MatchRepository;
 import com.lolplanet.demo.domain.participant.Participant;
 import com.lolplanet.demo.domain.participant.ParticipantId;
 import com.lolplanet.demo.domain.participant.ParticipantRepository;
-import com.lolplanet.demo.web.dto.MatchListReqDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.util.Arrays;
 import java.util.List;
@@ -314,16 +311,13 @@ public class MatchRestControllerTests {
 
         participantRepository.saveAll(participants);
 
-        MatchListReqDto dto = new MatchListReqDto(0, 20);
+        MultiValueMap<String, String> info = new LinkedMultiValueMap<>();
 
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
-        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
-        String requestJson=ow.writeValueAsString(dto);
+        info.add("start", "0");
+        info.add("count", "20");
 
         mockMvc.perform(get("/lol/match/list")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestJson))
+                .params(info))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
