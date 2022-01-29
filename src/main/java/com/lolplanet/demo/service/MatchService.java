@@ -7,8 +7,10 @@ import com.lolplanet.demo.domain.match.Match;
 import com.lolplanet.demo.domain.match.MatchRepository;
 import com.lolplanet.demo.domain.participant.Participant;
 import com.lolplanet.demo.domain.participant.ParticipantRepository;
-import com.lolplanet.demo.web.dto.MatchListResDto;
+import com.lolplanet.demo.web.dto.MatchResDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
@@ -53,8 +55,8 @@ public class MatchService {
     }
 
     @Transactional(readOnly = true)
-    public MatchListResDto findList(int start, int count) {
-        return matchRepository.findList(start, count);
+    public Page<MatchResDto> findList(Pageable pageable) {
+        return matchRepository.findList(pageable);
     }
 
     public List<String> findGameIdList(String puuid, int start, int count) {

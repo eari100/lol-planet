@@ -1,9 +1,11 @@
 package com.lolplanet.demo.domain.match;
 
-import com.lolplanet.demo.web.dto.MatchListResDto;
 import com.lolplanet.demo.web.dto.MatchResDto;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,18 +19,18 @@ public class MatchRepositoryImpl implements MatchRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public MatchListResDto findList(int start, int count) {
-        List<Match> matches = queryFactory.selectFrom(match)
+    public Page<MatchResDto> findList(Pageable pageable) {
+        List<Match> entity = queryFactory.selectFrom(match)
                 .leftJoin(match.participants, participant).fetchJoin()
                 .orderBy(match.createdDate.desc())
-                .offset(start)
-                .limit(count)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
 
-        List<MatchResDto> matchResDtos = matches.stream()
+        List<MatchResDto> dto = entity.stream()
                 .map(MatchResDto::new)
                 .collect(Collectors.toList());
 
-        return new MatchListResDto(matchResDtos);
+        return new PageImpl<>(dto, pageable, dto.size());
     }
 }

@@ -1,8 +1,11 @@
 package com.lolplanet.demo.web.controller;
 
 import com.lolplanet.demo.service.MatchService;
-import com.lolplanet.demo.web.dto.MatchListResDto;
+import com.lolplanet.demo.web.dto.MatchResDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +18,7 @@ public class MatchRestController {
     private final MatchService matchService;
 
     @GetMapping("/list")
-    public MatchListResDto findList(@RequestParam(name = "start") int start, @RequestParam(name = "count") int count) {
-        return matchService.findList(start, count);
+    public Page<MatchResDto> findList(@RequestParam(name = "start") int start, @RequestParam(name = "count") int count) {
+        return matchService.findList(PageRequest.of(start, count, Sort.by("gameCreation").descending()));
     }
 }
