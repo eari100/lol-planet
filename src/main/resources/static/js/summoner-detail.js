@@ -5,7 +5,7 @@ const summoner_detail = {
         const summonerName = $('#summonerName').val()
         findSummonerInfo(summonerName)
 
-        function findSummonerInfo(summonerName) {
+        function findSummonerInfo() {
             $.ajax({
                 type: 'GET',
                 url: '/lol/summoner/v4/summoners/by-name/' + summonerName,
