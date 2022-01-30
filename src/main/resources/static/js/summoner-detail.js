@@ -5,7 +5,14 @@ const summoner_detail = {
         const summonerName = $('#summonerName').val()
         findSummonerInfo()
 
-        $('#btn-renew').click(() => renew())
+        $('#btn-renew').click(function (e){
+            e.preventDefault()
+            let l = Ladda.create(this)
+            l.start()
+            l.setProgress(0.3)
+
+            renew(l)
+        })
 
         function findSummonerInfo() {
             $.ajax({
@@ -25,14 +32,19 @@ const summoner_detail = {
             $('.summoner_level').html(`LV.${summoner.summonerLevel}`)
         }
 
-       function renew() {
+       function renew(ladda) {
            $.ajax({
                type: 'POST',
-               url: '/lol/summoner/renew/by-name/' + summonerName
+               url: '/lol/summoner/renew/by-name/' + summonerName,
+               success: function () {
+                   ladda.setProgress(0.9)
+               }
            }).done(function () {
                findSummonerInfo()
            }).fail(function (error) {
                alert(JSON.stringify(error))
+           }).always(function() {
+               ladda.stop();
            })
        }
     }

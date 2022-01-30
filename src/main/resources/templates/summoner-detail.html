@@ -4,6 +4,10 @@
     <th:block th:replace="fragment/header :: commonHeader"></th:block>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="css/summoner-detail.css">
+    <!--ladda-bootstrap-->
+    <link rel="stylesheet" href="css/ladda-themeless.min.css">
+    <link rel="stylesheet" href="css/ladda.min.css">
+
     <input type="hidden" id="summonerName" th:value="${summonerName}">
 </head>
 <body>
@@ -25,12 +29,17 @@
             <p>준비 중 입니다...</p>
         </div>
         <div id="tabs-match">
-            <button id="btn-renew" class="btn btn-primary Button Blue">업데이트</button>
+            <button id="btn-renew" class="btn btn-primary ladda-button Button Blue" data-style="expand-right" data-size="s">
+                <span class="ladda-label">업데이트</span>
+            </button>
         </div>
     </div>
 
     <th:block th:replace="fragment/footer :: commonFooter"></th:block>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="js/summoner-detail.js"></script>
+    <!--ladda-bootstrap-->
+    <script src="js/spin.js"></script>
+    <script src="js/ladda.js"></script>
 </body>
 </html>
