@@ -3,7 +3,9 @@ const summoner_detail = {
         $( "#tabs" ).tabs()
 
         const summonerName = $('#summonerName').val()
-        findSummonerInfo(summonerName)
+        findSummonerInfo()
+
+        $('#btn-renew').click(() => renew())
 
         function findSummonerInfo() {
             $.ajax({
@@ -23,6 +25,16 @@ const summoner_detail = {
             $('.summoner_level').html(`LV.${summoner.summonerLevel}`)
         }
 
+       function renew() {
+           $.ajax({
+               type: 'POST',
+               url: '/lol/summoner/renew/by-name/' + summonerName
+           }).done(function () {
+               findSummonerInfo()
+           }).fail(function (error) {
+               alert(JSON.stringify(error))
+           })
+       }
     }
 }
 
