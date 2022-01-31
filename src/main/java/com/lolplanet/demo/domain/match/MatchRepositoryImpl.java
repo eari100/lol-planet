@@ -22,7 +22,7 @@ public class MatchRepositoryImpl implements MatchRepositoryCustom {
     public Page<MatchResDto> findList(Pageable pageable, String summonerName) {
         List<Match> entity = queryFactory.selectFrom(match)
                 .leftJoin(match.participants, participant).fetchJoin()
-                .orderBy(match.createdDate.desc())
+                .orderBy(match.gameCreation.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
