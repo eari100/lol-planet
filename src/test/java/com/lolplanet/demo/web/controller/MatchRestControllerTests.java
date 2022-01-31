@@ -315,6 +315,7 @@ public class MatchRestControllerTests {
 
         info.add("start", "0");
         info.add("count", "20");
+        info.add("summonerName", "한남동의 황제");
 
         mockMvc.perform(get("/lol/match/list")
                 .params(info))

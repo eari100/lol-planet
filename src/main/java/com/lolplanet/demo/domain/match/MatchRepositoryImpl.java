@@ -19,7 +19,7 @@ public class MatchRepositoryImpl implements MatchRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Page<MatchResDto> findList(Pageable pageable) {
+    public Page<MatchResDto> findList(Pageable pageable, String summonerName) {
         List<Match> entity = queryFactory.selectFrom(match)
                 .leftJoin(match.participants, participant).fetchJoin()
                 .orderBy(match.createdDate.desc())
@@ -28,7 +28,7 @@ public class MatchRepositoryImpl implements MatchRepositoryCustom {
                 .fetch();
 
         List<MatchResDto> dto = entity.stream()
-                .map(MatchResDto::new)
+                .map(m -> new MatchResDto(m, summonerName))
                 .collect(Collectors.toList());
 
         return new PageImpl<>(dto, pageable, dto.size());

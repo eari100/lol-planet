@@ -18,7 +18,7 @@ public class MatchRestController {
     private final MatchService matchService;
 
     @GetMapping("/list")
-    public Page<MatchResDto> findList(@RequestParam(name = "start") int start, @RequestParam(name = "count") int count) {
-        return matchService.findList(PageRequest.of(start, count, Sort.by("gameCreation").descending()));
+    public Page<MatchResDto> findList(@RequestParam(name = "start") int start, @RequestParam(name = "count") int count, @RequestParam(name = "summonerName") String summonerName) {
+        return matchService.findList(PageRequest.of(start, count, Sort.by("gameCreation").descending()), summonerName);
     }
 }

@@ -308,7 +308,7 @@ public class MatchRepositoryTests {
 
         final int count = 1;
 
-        Page<MatchResDto> matchResDtos = matchRepository.findList((PageRequest.of(0, count, Sort.by("gameCreation").descending())));
+        Page<MatchResDto> matchResDtos = matchRepository.findList((PageRequest.of(0, count, Sort.by("gameCreation").descending())), "한남동의 황제");
 
         assertThat(matchResDtos.getNumber()).isEqualTo(0);
         assertThat(matchResDtos.getTotalPages()).isEqualTo(1);
@@ -317,7 +317,7 @@ public class MatchRepositoryTests {
         for(MatchResDto matchResDto : matchResDtos) {
            List<ParticipantResDto> participantResDtos = matchResDto.getParticipantResDtos();
 
-           assertThat(participantResDtos.size()).isEqualTo(count * 10);
+           assertThat(participantResDtos.size()).isEqualTo(10);
 
            for(ParticipantResDto participantResDto : participantResDtos) {
                assertThat(participantResDto.getChampionId()).isNotNull();

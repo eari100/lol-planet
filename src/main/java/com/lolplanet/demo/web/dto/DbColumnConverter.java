@@ -26,6 +26,10 @@ public class DbColumnConverter {
         return sdf.format(new Date(gameCreation));
     }
 
+    public String convertToGameResult(Boolean win) {
+        return win ? "승리" : "패배";
+    }
+
     public String convertToGameDurationMinutesSeconds(Long gameDuration) {
         return String.format("%d분%2d초", gameDuration/60, gameDuration%60);
     }

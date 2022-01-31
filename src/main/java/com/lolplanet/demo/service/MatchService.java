@@ -55,8 +55,8 @@ public class MatchService {
     }
 
     @Transactional(readOnly = true)
-    public Page<MatchResDto> findList(Pageable pageable) {
-        return matchRepository.findList(pageable);
+    public Page<MatchResDto> findList(Pageable pageable, String summonerName) {
+        return matchRepository.findList(pageable, summonerName);
     }
 
     public List<String> findGameIdList(String puuid, int start, int count) {

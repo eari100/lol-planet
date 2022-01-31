@@ -5,5 +5,5 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface MatchRepositoryCustom {
-    Page<MatchResDto> findList(Pageable pageable);
+    Page<MatchResDto> findList(Pageable pageable, String summonerName);
 }
