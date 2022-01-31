@@ -1,5 +1,9 @@
 package com.lolplanet.demo.web.dto;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 // https://developer.riotgames.com/docs/lol#data-dragon
 public class DbColumnConverter {
 
@@ -15,5 +19,14 @@ public class DbColumnConverter {
         else mapName = "특수 모드";
 
         return mapName;
+    }
+
+    public String convertToGameCreationDate(Long gameCreation) {
+        SimpleDateFormat sdf = new SimpleDateFormat( "yy-MM-dd" , Locale.KOREA );
+        return sdf.format(new Date(gameCreation));
+    }
+
+    public String convertToGameDurationMinutesSeconds(Long gameDuration) {
+        return String.format("%d분%2d초", gameDuration/60, gameDuration%60);
     }
 }
