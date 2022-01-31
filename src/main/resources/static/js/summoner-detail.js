@@ -4,6 +4,7 @@ const summoner_detail = {
 
         const summonerName = $('#summonerName').val()
         findSummonerInfo()
+        findMatchList()
 
         $('#btn-renew').click(function (e){
             e.preventDefault()
@@ -32,7 +33,32 @@ const summoner_detail = {
             $('.summoner_level').html(`LV.${summoner.summonerLevel}`)
         }
 
-       function renew(ladda) {
+        function findMatchList() {
+            $.ajax({
+                type: 'GET',
+                url: '/lol/match/list?start=0&count=20',
+                dataType: 'json'
+            }).done(function (res) {
+                res.content.forEach(match => renderMatchEl(match))
+            }).fail(function (error) {
+                alert(JSON.stringify(error))
+            })
+        }
+
+        function renderMatchEl(match) {
+            $('.MatchesList').append(
+                `<div class="MatchWrap">
+                    <div class="GameItem">
+                        <div class="Content">
+                            <div class="GameStats">
+                                <div class="GameType">${match.mapName}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`)
+        }
+
+        function renew(ladda) {
            $.ajax({
                type: 'POST',
                url: '/lol/summoner/renew/by-name/' + summonerName,
@@ -40,7 +66,9 @@ const summoner_detail = {
                    ladda.setProgress(0.9)
                }
            }).done(function () {
+               $('.MatchesList').empty()
                findSummonerInfo()
+               findMatchList()
            }).fail(function (error) {
                alert(JSON.stringify(error))
            }).always(function() {
