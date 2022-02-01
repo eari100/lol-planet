@@ -10,7 +10,7 @@ const main = {
     },
     findByName : function() {
         const name = $('#summonerName').val()
-        window.location.href = '/userName='+name
+        window.location.href = `/userName=${name}`
     }
 }
 
