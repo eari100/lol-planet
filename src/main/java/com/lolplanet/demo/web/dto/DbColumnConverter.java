@@ -204,4 +204,33 @@ public class DbColumnConverter {
 
         return championName;
     }
+
+    /* http://ddragon.leagueoflegends.com/cdn/11.9.1/data/en_US/summoner.json
+     * update : v12.2.1
+     */
+    public String convertToSpellName(Integer spellId) {
+        String spellName = "";
+
+        switch (spellId) {
+            case 21: spellName = "SummonerBarrier"; break;
+            case 1: spellName = "SummonerBoost"; break;
+            case 14: spellName = "SummonerDot"; break;
+            case 3: spellName = "SummonerExhaust"; break;
+            case 4: spellName = "SummonerFlash"; break;
+            case 6: spellName = "SummonerHaste"; break;
+            case 7: spellName = "SummonerHeal"; break;
+            case 13: spellName = "SummonerMana"; break;
+            case 30: spellName = "SummonerPoroRecall"; break;
+            case 31: spellName = "SummonerPoroThrow"; break;
+            case 11: spellName = "SummonerSmite"; break;
+            case 39: spellName = "SummonerSnowURFSnowball_Mark"; break;
+            case 32: spellName = "SummonerSnowball"; break;
+            case 12: spellName = "SummonerTeleport"; break;
+            case 54: spellName = "Summoner_UltBookPlaceholder"; break;
+            case 55: spellName = "Summoner_UltBookSmitePlaceholder"; break;
+            default: spellName = "undefined"; break;
+        }
+
+        return spellName;
+    }
 }

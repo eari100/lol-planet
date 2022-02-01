@@ -15,6 +15,8 @@ public class MatchResDto {
     private String gameDurationToString;
     private String gameResult;
     private String playedChampionName;
+    private String usedSpell1Name;
+    private String usedSpell2Name;
     private List<ParticipantResDto> participantResDtos = new ArrayList<>();
 
     public MatchResDto(Match entity, String summonerName) {
@@ -31,6 +33,8 @@ public class MatchResDto {
             if(participant.getSummonerName().equals(summonerName)) {
                 this.gameResult = converter.convertToGameResult(participant.getWin());
                 this.playedChampionName = converter.convertToChampionName(participant.getChampionId());
+                this.usedSpell1Name = converter.convertToSpellName(participant.getSummoner1Id());
+                this.usedSpell2Name = converter.convertToSpellName(participant.getSummoner2Id());
             }
         }
     }
