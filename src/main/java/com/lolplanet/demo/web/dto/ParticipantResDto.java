@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class ParticipantResDto {
-    private Integer championId;
+    private String championName;
     private Integer teamId;
     private Integer summoner1Id;
     private Integer summoner2Id;
@@ -28,7 +28,10 @@ public class ParticipantResDto {
     private Integer participantId;
 
     public ParticipantResDto(Participant entity) {
-        this.championId = entity.getChampionId();
+
+        DbColumnConverter converter = new DbColumnConverter();
+
+        this.championName = converter.convertToChampionName(entity.getChampionId());
         this.teamId = entity.getTeamId();
         this.summoner1Id = entity.getSummoner1Id();
         this.summoner2Id = entity.getSummoner2Id();
