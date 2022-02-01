@@ -34,7 +34,7 @@ public class MatchResDto {
     private Integer item5;
     private Integer item6;
     private Integer visionWardsBoughtInGame;
-    private List<ParticipantResDto> participantResDtos = new ArrayList<>();
+    private List<ParticipantResDto> participants = new ArrayList<>();
 
     public MatchResDto(Match entity, String summonerName) {
         DbColumnConverter converter = new DbColumnConverter();
@@ -45,7 +45,7 @@ public class MatchResDto {
         this.gameDurationToString = converter.convertToGameDurationMinutesSeconds(entity.getGameDuration());
 
         for(Participant participant : entity.getParticipants()) {
-            participantResDtos.add(new ParticipantResDto(participant));
+            participants.add(new ParticipantResDto(participant));
 
             if(participant.getSummonerName().equals(summonerName)) {
                 this.gameResult = converter.convertToGameResult(participant.getWin());
