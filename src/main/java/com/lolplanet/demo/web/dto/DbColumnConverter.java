@@ -233,4 +233,8 @@ public class DbColumnConverter {
 
         return spellName;
     }
+
+    public String convertToKda(float kills, float deaths, float assists) {
+        return deaths==0 ? "OMG !!!" : String.format("%.2f:1 평점", ((kills+assists)/deaths));
+    }
 }
