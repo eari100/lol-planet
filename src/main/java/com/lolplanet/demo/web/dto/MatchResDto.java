@@ -21,6 +21,11 @@ public class MatchResDto {
     private Integer deaths;
     private Integer assists;
     private String kda;
+    private Integer playedChampLevel;
+    private Integer totalMinionsKilled;
+    private Integer neutralMinionsKilled;
+    private Integer totalCs;
+    private String csPerMinute;
     private List<ParticipantResDto> participantResDtos = new ArrayList<>();
 
     public MatchResDto(Match entity, String summonerName) {
@@ -43,6 +48,11 @@ public class MatchResDto {
                 this.deaths = participant.getDeaths();
                 this.assists = participant.getAssists();
                 this.kda = converter.convertToKda(participant.getKills(), participant.getDeaths(), participant.getAssists());
+                this.playedChampLevel = participant.getChampLevel();
+                this.totalMinionsKilled = participant.getTotalMinionsKilled();
+                this.neutralMinionsKilled = participant.getNeutralMinionsKilled();
+                this.totalCs = participant.getTotalMinionsKilled() + participant.getNeutralMinionsKilled();
+                this.csPerMinute = converter.convertToCsPerMinute(this.totalCs, entity.getGameDuration());
             }
         }
     }

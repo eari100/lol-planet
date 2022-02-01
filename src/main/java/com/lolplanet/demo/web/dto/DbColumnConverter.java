@@ -237,4 +237,8 @@ public class DbColumnConverter {
     public String convertToKda(float kills, float deaths, float assists) {
         return deaths==0 ? "OMG !!!" : String.format("%.2f:1 평점", ((kills+assists)/deaths));
     }
+
+    public String convertToCsPerMinute(float totalCs, float gameDuration) {
+        return String.format("%.1f", totalCs/(gameDuration/60));
+    }
 }
