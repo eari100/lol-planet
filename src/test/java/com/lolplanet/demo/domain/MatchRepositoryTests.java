@@ -315,12 +315,12 @@ public class MatchRepositoryTests {
         assertThat(matchResDtos.getContent().size()).isEqualTo(1);
 
         for(MatchResDto matchResDto : matchResDtos) {
-           List<ParticipantResDto> participantResDtos = matchResDto.getParticipantResDtos();
+           List<ParticipantResDto> participantResDtos = matchResDto.getParticipants();
 
            assertThat(participantResDtos.size()).isEqualTo(10);
 
            for(ParticipantResDto participantResDto : participantResDtos) {
-               assertThat(participantResDto.getChampionId()).isNotNull();
+               assertThat(participantResDto.getChampionName()).isNotNull();
            }
         }
     }
