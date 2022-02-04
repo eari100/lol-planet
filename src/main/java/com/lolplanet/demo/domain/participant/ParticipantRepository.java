@@ -2,5 +2,5 @@ package com.lolplanet.demo.domain.participant;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ParticipantRepository extends JpaRepository<Participant, ParticipantId> {
+public interface ParticipantRepository extends JpaRepository<Participant, ParticipantId>, ParticipantRepositoryCustom {
 }
