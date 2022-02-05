@@ -14,7 +14,7 @@ public class ParticipantService {
     private final ParticipantRepository participantRepository;
 
     @Transactional(readOnly = true)
-    public Page<MatchListBySummonerResDto> findBySummonerId(Pageable pageable, String summonerId) {
-        return participantRepository.findBySummonerId(pageable, summonerId);
+    public Page<MatchListBySummonerResDto> findBySummonerName(Pageable pageable, String summonerName) {
+        return participantRepository.findBySummonerName(pageable, summonerName);
     }
 }

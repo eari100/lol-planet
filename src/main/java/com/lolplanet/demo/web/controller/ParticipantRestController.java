@@ -17,7 +17,7 @@ public class ParticipantRestController {
     private final ParticipantService participantService;
 
     @GetMapping("/list")
-    public Page<MatchListBySummonerResDto> findBySummonerId(@RequestParam(name = "start") int start, @RequestParam(name = "count") int count, @RequestParam(name = "summonerId") String summonerId) {
-        return participantService.findBySummonerId(PageRequest.of(start, count), summonerId);
+    public Page<MatchListBySummonerResDto> findBySummonerName(@RequestParam(name = "start") int start, @RequestParam(name = "count") int count, @RequestParam(name = "summonerName") String summonerName) {
+        return participantService.findBySummonerName(PageRequest.of(start, count), summonerName);
     }
 }

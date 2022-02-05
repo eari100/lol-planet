@@ -315,7 +315,7 @@ public class ParticipantRestControllerTests {
 
         info.add("start", "0");
         info.add("count", "20");
-        info.add("summonerId", "0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo");
+        info.add("summonerName", "한남동의 황제");
 
         mockMvc.perform(get("/lol/participant/list")
                 .params(info))
