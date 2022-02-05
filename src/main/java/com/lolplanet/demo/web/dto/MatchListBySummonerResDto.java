@@ -5,7 +5,7 @@ import com.lolplanet.demo.domain.participant.Participant;
 import lombok.Getter;
 
 @Getter
-public class MatchListByNameResDto {
+public class MatchListBySummonerResDto {
     private String mapName;
     private String platformId;
     private String gameCreationToDate;
@@ -40,7 +40,7 @@ public class MatchListByNameResDto {
     private String summonerName;
     private Integer participantId;
 
-    public MatchListByNameResDto(Participant entity) {
+    public MatchListBySummonerResDto(Participant entity) {
         DbColumnConverter converter = new DbColumnConverter();
         Match match = entity.getId().getMatch();
 

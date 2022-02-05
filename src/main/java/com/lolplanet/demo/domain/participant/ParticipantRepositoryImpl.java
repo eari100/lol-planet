@@ -1,6 +1,6 @@
 package com.lolplanet.demo.domain.participant;
 
-import com.lolplanet.demo.web.dto.MatchListByNameResDto;
+import com.lolplanet.demo.web.dto.MatchListBySummonerResDto;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,7 +19,7 @@ public class ParticipantRepositoryImpl implements ParticipantRepositoryCustom {
 
 
     @Override
-    public Page<MatchListByNameResDto> findBySummonerId(Pageable pageable, String summonerId) {
+    public Page<MatchListBySummonerResDto> findBySummonerId(Pageable pageable, String summonerId) {
 
         ParticipantId id = new ParticipantId();
         id.setSummonerId(summonerId);
@@ -31,8 +31,8 @@ public class ParticipantRepositoryImpl implements ParticipantRepositoryCustom {
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        List<MatchListByNameResDto> dto = entity.stream()
-                .map(MatchListByNameResDto::new)
+        List<MatchListBySummonerResDto> dto = entity.stream()
+                .map(MatchListBySummonerResDto::new)
                 .collect(Collectors.toList());
 
         return new PageImpl(dto, pageable, entity.size());

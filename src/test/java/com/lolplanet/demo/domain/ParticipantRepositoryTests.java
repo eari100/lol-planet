@@ -5,7 +5,7 @@ import com.lolplanet.demo.domain.match.MatchRepository;
 import com.lolplanet.demo.domain.participant.Participant;
 import com.lolplanet.demo.domain.participant.ParticipantId;
 import com.lolplanet.demo.domain.participant.ParticipantRepository;
-import com.lolplanet.demo.web.dto.MatchListByNameResDto;
+import com.lolplanet.demo.web.dto.MatchListBySummonerResDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -309,13 +309,13 @@ public class ParticipantRepositoryTests {
 
         final int count = 1;
 
-        Page<MatchListByNameResDto> dto = participantRepository.findBySummonerId((PageRequest.of(0, count, Sort.by("gameCreation").descending())), "0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo");
+        Page<MatchListBySummonerResDto> dto = participantRepository.findBySummonerId((PageRequest.of(0, count, Sort.by("gameCreation").descending())), "0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo");
 
         assertThat(dto.getNumber()).isEqualTo(0);
         assertThat(dto.getTotalPages()).isEqualTo(1);
         assertThat(dto.getContent().size()).isEqualTo(1);
 
-        for(MatchListByNameResDto mlbnDto : dto) {
+        for(MatchListBySummonerResDto mlbnDto : dto) {
             assertThat(mlbnDto.getSummonerName()).isNotNull();
         }
     }
