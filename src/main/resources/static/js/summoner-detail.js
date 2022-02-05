@@ -36,7 +36,7 @@ const summoner_detail = {
         function findMatchList(start) {
             $.ajax({
                 type: 'GET',
-                url: `/lol/match/list?start=${start}&count=20&summonerName=${summonerName}`,
+                url: `/lol/participant/list?start=${start}&count=20&summonerName=${summonerName}`,
                 dataType: 'json'
             }).done(function (res) {
                 res.content.forEach(match => renderMatchEl(match))
@@ -144,72 +144,6 @@ const summoner_detail = {
                                 <div class="Trinket">
                                     <img src="//opgg-static.akamaized.net/images/site/summoner/icon-ward-blue.png">
                                     제어 와드 <span class="wards vision">${match.visionWardsBoughtInGame}</span>
-                                </div>
-                            </div>
-                            <div class="FollowPlayers Names">
-                                <div class="Team">
-                                    <div class="Summoner ">
-                                        <div class="ChampionImage">
-                                            <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[0].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
-                                        </div>
-                                        <div class="SummonerName">${match.participants[0].summonerName}</div>
-                                    </div>
-                                    <div class="Summoner ">
-                                        <div class="ChampionImage">
-                                            <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[1].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
-                                        </div>
-                                        <div class="SummonerName">${match.participants[1].summonerName}</div>
-                                    </div>
-                                    <div class="Summoner ">
-                                        <div class="ChampionImage">
-                                            <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[2].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
-                                        </div>
-                                        <div class="SummonerName">${match.participants[2].summonerName}</div>
-                                    </div>
-                                    <div class="Summoner ">
-                                        <div class="ChampionImage">
-                                            <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[3].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
-                                        </div>
-                                        <div class="SummonerName">${match.participants[3].summonerName}</div>
-                                    </div>
-                                    <div class="Summoner ">
-                                        <div class="ChampionImage">
-                                            <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[4].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
-                                        </div>
-                                        <div class="SummonerName">${match.participants[4].summonerName}</div>
-                                    </div>
-                                </div>
-                                <div class="Team">
-                                    <div class="Summoner ">
-                                        <div class="ChampionImage">
-                                            <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[5].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
-                                        </div>
-                                        <div class="SummonerName">${match.participants[5].summonerName}</div>
-                                    </div>
-                                    <div class="Summoner ">
-                                        <div class="ChampionImage">
-                                            <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[6].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
-                                        </div>
-                                        <div class="SummonerName">${match.participants[6].summonerName}</div>
-                                    </div>
-                                    <div class="Summoner ">
-                                        <div class="ChampionImage">
-                                            <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[7].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
-                                        </div>
-                                        <div class="SummonerName">${match.participants[7].summonerName}</div>
-                                    </div>
-                                    <div class="Summoner ">
-                                        <div class="ChampionImage">
-                                            <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[8].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
-                                        </div>
-                                        <div class="SummonerName">${match.participants[8].summonerName}</div>
-                                    </div>
-                                    <div class="Summoner ">
-                                        <div class="ChampionImage">
-                                            <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[9].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
-                                        </div>
-                                        <div class="SummonerName">${match.participants[9].summonerName}</div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
