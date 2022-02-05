@@ -17,7 +17,7 @@ public class ParticipantRepositoryImpl implements ParticipantRepositoryCustom {
 
 
     @Override
-    public Page<Participant> findBysummonerId(Pageable pageable, String summonerId) {
+    public Page<Participant> findBySummonerId(Pageable pageable, String summonerId) {
 
         ParticipantId id = new ParticipantId();
         id.setSummonerId(summonerId);

@@ -306,7 +306,7 @@ public class ParticipantRepositoryTests {
 
         final int count = 1;
 
-        Page<Participant> participantPage = participantRepository.findBysummonerId((PageRequest.of(0, count, Sort.by("gameCreation").descending())), "0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo");
+        Page<Participant> participantPage = participantRepository.findBySummonerId((PageRequest.of(0, count, Sort.by("gameCreation").descending())), "0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo");
 
         assertThat(participantPage.getNumber()).isEqualTo(0);
         assertThat(participantPage.getTotalPages()).isEqualTo(1);
