@@ -5,6 +5,7 @@ import com.lolplanet.demo.domain.match.MatchRepository;
 import com.lolplanet.demo.domain.participant.Participant;
 import com.lolplanet.demo.domain.participant.ParticipantId;
 import com.lolplanet.demo.domain.participant.ParticipantRepository;
+import com.lolplanet.demo.web.dto.MatchListByNameResDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,6 +36,7 @@ public class ParticipantRepositoryTests {
     }
 
     @Test
+    @Transactional // org.hibernate.LazyInitializationException: could not initialize proxy 방지
     public void 매치_리스트_조회() {
 
         Match match1 = Match.builder()
@@ -306,14 +309,14 @@ public class ParticipantRepositoryTests {
 
         final int count = 1;
 
-        Page<Participant> participantPage = participantRepository.findBySummonerId((PageRequest.of(0, count, Sort.by("gameCreation").descending())), "0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo");
+        Page<MatchListByNameResDto> dto = participantRepository.findBySummonerId((PageRequest.of(0, count, Sort.by("gameCreation").descending())), "0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo");
 
-        assertThat(participantPage.getNumber()).isEqualTo(0);
-        assertThat(participantPage.getTotalPages()).isEqualTo(1);
-        assertThat(participantPage.getContent().size()).isEqualTo(1);
+        assertThat(dto.getNumber()).isEqualTo(0);
+        assertThat(dto.getTotalPages()).isEqualTo(1);
+        assertThat(dto.getContent().size()).isEqualTo(1);
 
-        for(Participant participant : participantPage) {
-            assertThat(participant.getId().getMatch().getGameId()).isNotNull();
+        for(MatchListByNameResDto mlbnDto : dto) {
+            assertThat(mlbnDto.getSummonerName()).isNotNull();
         }
     }
 }
