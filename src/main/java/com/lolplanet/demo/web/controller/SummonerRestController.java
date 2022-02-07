@@ -1,5 +1,6 @@
 package com.lolplanet.demo.web.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lolplanet.demo.service.MatchService;
 import com.lolplanet.demo.service.SummonerService;
 import com.lolplanet.demo.web.dto.SummonerResDto;
@@ -15,7 +16,7 @@ public class SummonerRestController {
     private final MatchService matchService;
 
     @GetMapping("/v4/summoners/by-name/{summonerName}")
-    public SummonerResDto findByName(@PathVariable("summonerName") String summonerName) {
+    public SummonerResDto findByName(@PathVariable("summonerName") String summonerName) throws JsonProcessingException {
         return summonerService.findByName(summonerName);
     }
 
