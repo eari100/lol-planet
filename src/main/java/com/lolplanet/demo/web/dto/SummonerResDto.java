@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class SummonerResDto extends StatusResDto {
+public class SummonerResDto {
     private Integer profileIconId;
     private String name;
     private Long summonerLevel;
@@ -17,10 +17,5 @@ public class SummonerResDto extends StatusResDto {
         this.name = entity.getName();
         this.summonerLevel = entity.getSummonerLevel();
         this.puuid = entity.getPuuid();
-    }
-
-    public void setStatus(StatusResDto status) {
-        this.setStatusCode(status.getStatusCode());
-        this.setMessage(status.getMessage());
     }
 }

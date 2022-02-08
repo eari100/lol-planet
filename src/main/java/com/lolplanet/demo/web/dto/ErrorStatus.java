@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Setter
 @Getter
-public class StatusResDto {
+public class ErrorStatus {
     private Integer statusCode;
     private String message;
 
