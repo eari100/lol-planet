@@ -1,9 +1,13 @@
 package com.lolplanet.demo.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lolplanet.demo.api.riot.RiotApi;
 import com.lolplanet.demo.api.riot.dto.SummonerReqDto;
 import com.lolplanet.demo.domain.summoner.Summoner;
 import com.lolplanet.demo.domain.summoner.SummonerRepository;
+import com.lolplanet.demo.web.dto.DefaultResDto;
+import com.lolplanet.demo.web.dto.ErrorStatus;
 import com.lolplanet.demo.web.dto.SummonerResDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +24,7 @@ public class SummonerService {
     private final RiotApi riotApi;
 
     @Transactional
-    public SummonerResDto findByName(String name) {
+    public DefaultResDto findByName(String name) throws JsonProcessingException {
         Optional<Summoner> summoner = summonerRepository.findByName(name);
 
         if(summoner.isEmpty()) {
@@ -29,14 +33,18 @@ public class SummonerService {
             try {
                 reqDto = callSummonerApi(name);
             } catch (HttpClientErrorException ex) {
-                return new SummonerResDto();
+                ErrorStatus errorStatus = new ObjectMapper()
+                        .readerFor(ErrorStatus.class)
+                        .readValue(ex.getResponseBodyAsString());
+
+                return new DefaultResDto(null, errorStatus);
             }
 
             // DB에 저장
             Summoner newSummoner = summonerRepository.save(reqDto.toEntity());
-            return new SummonerResDto(newSummoner);
+            return new DefaultResDto(newSummoner, null);
         } else {
-            return new SummonerResDto(summoner.get());
+            return new DefaultResDto(summoner.get(), null);
         }
     }
 

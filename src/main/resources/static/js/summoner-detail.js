@@ -1,36 +1,70 @@
 const summoner_detail = {
     init: function () {
-        $( "#tabs" ).tabs()
 
         const summonerName = $('#summonerName').val()
-        findSummonerInfo()
-        findMatchList(0)
 
-        $('#btn-renew').click(function (e){
-            e.preventDefault()
-            let l = Ladda.create(this)
-            l.start()
-            l.setProgress(0.3)
+        findSummonerInfo(initRederTabsEl)
 
-            renew(l)
-        })
-
-        function findSummonerInfo() {
+        function findSummonerInfo(callback) {
             $.ajax({
                 type: 'GET',
                 url: `/lol/summoner/v4/summoners/by-name/${summonerName}`,
                 dataType: 'json'
-            }).done(function (summoner) {
-                renderSummonerEl(summoner)
+            }).done(function (res) {
+                if(res.errorStatus === null) {
+                    renderSummonerEl(res.data)
+                    if(callback) callback()
+                } else
+                    $(document.body).append(`<h1>소환사 검색 오류 입니다. 오타를 확인해주세요.</h1>`)
             }).fail(function (error) {
                 alert(JSON.stringify(error))
             })
         }
 
         function renderSummonerEl(summoner) {
-            $('.summoner_profile').html(`<img src="https://ddragon.leagueoflegends.com/cdn/12.2.1/img/profileicon/${summoner.profileIconId}.png" class="profile_img">`)
-            $('.summoner_name').html(`<h1>${summoner.name}</h1>`)
-            $('.summoner_level').html(`LV.${summoner.summonerLevel}`)
+            $('.summoner_info_box').html(
+                `<div className="summoner_profile">
+                    <img src="https://ddragon.leagueoflegends.com/cdn/12.2.1/img/profileicon/${summoner.profileIconId}.png" class="profile_img">
+                </div>
+                <div>
+                    <div className="summoner_name">
+                        <h1>${summoner.name}</h1>
+                    </div>
+                    <div className="summoner_level">
+                        LV.${summoner.summonerLevel}
+                    </div>
+                </div>`
+            )
+        }
+
+        function initRederTabsEl() {
+            $('.tabs_box').html(
+                `<div id="tabs">
+                    <ul>
+                        <li><a href="#tabs-review">리뷰</a></li>
+                        <li><a href="#tabs-match">전적</a></li>
+                    </ul>
+                    <div id="tabs-review">
+                        <p>준비 중 입니다...</p>
+                    </div>
+                    <div id="tabs-match">
+                        <button id="btn-renew" class="btn btn-primary ladda-button Button Blue" data-style="expand-right" data-size="s">
+                            <span class="ladda-label">업데이트</span>
+                        </button>
+                        <div class="MatchesList"></div>
+                    </div>
+                </div>`
+            )
+            $( "#tabs" ).tabs()
+            findMatchList(0)
+            $('#btn-renew').click(function (e){
+                e.preventDefault()
+                let l = Ladda.create(this)
+                l.start()
+                l.setProgress(0.3)
+
+                renew(l)
+            })
         }
 
         function findMatchList(start) {

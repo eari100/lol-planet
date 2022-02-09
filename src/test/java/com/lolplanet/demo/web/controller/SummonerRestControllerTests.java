@@ -71,9 +71,9 @@ public class SummonerRestControllerTests {
             mockMvc.perform(get(BASE_URL + name))
                     .andDo(print())
                     .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.profileIconId").exists())
-                    .andExpect(jsonPath("$.name", is(name)))
-                    .andExpect(jsonPath("$.summonerLevel", greaterThan(300)));
+                    .andExpect(jsonPath("$.data.profileIconId").exists())
+                    .andExpect(jsonPath("$.data.name", is(name)))
+                    .andExpect(jsonPath("$.data.summonerLevel", greaterThan(300)));
         }
 
         @Test
@@ -105,9 +105,9 @@ public class SummonerRestControllerTests {
             mockMvc.perform(get(BASE_URL + name))
                     .andDo(print())
                     .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.profileIconId", is(profileIconId)))
-                    .andExpect(jsonPath("$.name", is(name)))
-                    .andExpect(jsonPath("$.summonerLevel").value(pastSummonerLevel));
+                    .andExpect(jsonPath("$.data.profileIconId", is(profileIconId)))
+                    .andExpect(jsonPath("$.data.name", is(name)))
+                    .andExpect(jsonPath("$.data.summonerLevel").value(pastSummonerLevel));
         }
 
         @Test
@@ -120,9 +120,9 @@ public class SummonerRestControllerTests {
 
             mockMvc.perform(get(BASE_URL + NON_EXISTENT_NAME))
                     .andDo(print())
-                    .andExpect(jsonPath("$.profileIconId").doesNotExist())
-                    .andExpect(jsonPath("$.name").doesNotExist())
-                    .andExpect(jsonPath("$.summonerLevel").doesNotExist())
+                    .andExpect(jsonPath("$.data.profileIconId").doesNotExist())
+                    .andExpect(jsonPath("$.data.name").doesNotExist())
+                    .andExpect(jsonPath("$.data.summonerLevel").doesNotExist())
                     .andExpect(status().isOk());
         }
     }
