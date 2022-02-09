@@ -15,7 +15,7 @@ const summoner_detail = {
                     renderSummonerEl(res.data)
                     if(callback) callback()
                 } else
-                    $(document.body).append(`<h1>소환사 검색 오류 입니다.</h1>`)
+                    $(document.body).append(`<h1>소환사 검색 오류 입니다. 오타를 확인해주세요.</h1>`)
             }).fail(function (error) {
                 alert(JSON.stringify(error))
             })
