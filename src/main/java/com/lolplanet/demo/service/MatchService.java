@@ -10,6 +10,7 @@ import com.lolplanet.demo.domain.participant.ParticipantRepository;
 import com.lolplanet.demo.web.dto.MatchResDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -56,7 +57,11 @@ public class MatchService {
 
     @Transactional(readOnly = true)
     public Page<MatchResDto> findList(Pageable pageable, String summonerName) {
-        return matchRepository.findList(pageable, summonerName);
+        List<MatchResDto> dto = matchRepository.findList(pageable, summonerName).stream()
+                .map(m -> new MatchResDto(m, summonerName))
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(dto, pageable, dto.size());
     }
 
     public List<String> findGameIdList(String puuid, int start, int count) {
