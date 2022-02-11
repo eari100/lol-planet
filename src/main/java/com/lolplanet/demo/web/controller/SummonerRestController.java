@@ -3,7 +3,6 @@ package com.lolplanet.demo.web.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.lolplanet.demo.service.MatchService;
 import com.lolplanet.demo.service.SummonerService;
-import com.lolplanet.demo.web.dto.DefaultResDto;
 import com.lolplanet.demo.web.dto.SummonerResDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,8 +23,8 @@ public class SummonerRestController {
     }
 
     @PostMapping("/renew/by-name/{summonerName}")
-    public void renew(@PathVariable("summonerName") String summonerName) {
+    public void renew(@PathVariable("summonerName") String summonerName, @RequestParam(name = "start") int start, @RequestParam(name = "count") int count) {
         SummonerResDto summonerResDto = summonerService.update(summonerName);
-        matchService.renew(summonerResDto.getPuuid(), 0, 20);
+        matchService.renew(summonerResDto.getPuuid(), summonerResDto.getName(), start, count);
     }
 }

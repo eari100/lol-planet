@@ -11,6 +11,7 @@ import com.lolplanet.demo.web.dto.MatchResDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +28,17 @@ public class MatchService {
     private final ParticipantRepository participantRepository;
     private final RiotApi riotApi;
 
-    public void renew(String puuid, int start, int count) {
-        List<String> gameIds = findGameIdList(puuid, start, count);
+    public void renew(String puuid, String summonerName, int start, int count) {
+        List<String> gameIdsFromRiotApi = findGameIdList(puuid, start, count);
+        List<String> gameIdsFromDb = matchRepository.findList(PageRequest.of(start, count), summonerName)
+                .stream()
+                .map(m -> "KR_".concat(String.valueOf(m.getGameId())))
+                .collect(Collectors.toList());
+
+        List<String> gameIds = gameIdsFromRiotApi.stream()
+                .filter(g -> !gameIdsFromDb.contains(g))
+                .collect(Collectors.toList());
+
         gameIds.parallelStream().forEach(this::saveMatchAndParticipant);
     }
 
