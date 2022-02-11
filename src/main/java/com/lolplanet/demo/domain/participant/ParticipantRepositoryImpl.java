@@ -24,7 +24,7 @@ public class ParticipantRepositoryImpl implements ParticipantRepositoryCustom {
         List<Participant> entity = queryFactory.selectFrom(participant)
                 .where(participant.summonerName.eq(summonerName))
                 .orderBy(participant.id.match.gameCreation.desc())
-                .offset(pageable.getOffset())
+                .offset(pageable.getPageNumber())
                 .limit(pageable.getPageSize())
                 .fetch();
 
