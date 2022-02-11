@@ -63,7 +63,7 @@ const summoner_detail = {
                 l.start()
                 l.setProgress(0.3)
 
-                renew(l)
+                renew(l, 0)
             })
         }
 
@@ -185,10 +185,10 @@ const summoner_detail = {
                 </div>`)
         }
 
-        function renew(ladda) {
+        function renew(ladda, start) {
            $.ajax({
                type: 'POST',
-               url: `/lol/summoner/renew/by-name/${summonerName}`,
+               url: `/lol/summoner/renew/by-name/${summonerName}?start=${start}&count=20`,
                success: function () {
                    ladda.setProgress(0.9)
                }
