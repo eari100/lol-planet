@@ -19,10 +19,10 @@ public class ParticipantRepositoryImpl implements ParticipantRepositoryCustom {
 
 
     @Override
-    public Page<MatchListBySummonerResDto> findBySummonerName(Pageable pageable, String summonerName) {
+    public Page<MatchListBySummonerResDto> findBySummonerId(Pageable pageable, String summonerId) {
 
         List<Participant> entity = queryFactory.selectFrom(participant)
-                .where(participant.summonerName.eq(summonerName))
+                .where(participant.id.summonerId.eq(summonerId))
                 .orderBy(participant.id.match.gameCreation.desc())
                 .offset(pageable.getPageNumber())
                 .limit(pageable.getPageSize())
