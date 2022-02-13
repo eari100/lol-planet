@@ -309,7 +309,7 @@ public class ParticipantRepositoryTests {
 
         final int count = 1;
 
-        Page<MatchListBySummonerResDto> dto = participantRepository.findBySummonerName((PageRequest.of(0, count, Sort.by("gameCreation").descending())), "한남동의 황제");
+        Page<MatchListBySummonerResDto> dto = participantRepository.findBySummonerId((PageRequest.of(0, count, Sort.by("gameCreation").descending())), "0are3IM-Nf4gD7-wd3uVL1dGEvgsJqUQh25zU6pulSh_nHo");
 
         assertThat(dto.getNumber()).isEqualTo(0);
         assertThat(dto.getTotalPages()).isEqualTo(1);

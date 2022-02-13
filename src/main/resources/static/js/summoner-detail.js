@@ -2,6 +2,7 @@ const summoner_detail = {
     init: function () {
 
         const summonerName = $('#summonerName').val()
+        let summonerId
 
         findSummonerInfo(initRederTabsEl)
 
@@ -13,6 +14,7 @@ const summoner_detail = {
             }).done(function (res) {
                 if(res.errorStatus === null) {
                     renderSummonerEl(res.data)
+                    summonerId = res.data.id
                     if(callback) callback()
                 } else
                     $(document.body).append(`<h1>소환사 검색 오류 입니다. 오타를 확인해주세요.</h1>`)
@@ -72,7 +74,7 @@ const summoner_detail = {
 
             $.ajax({
                 type: 'GET',
-                url: `/lol/participant/list?start=${start}&count=20&summonerName=${summonerName}`,
+                url: `/lol/participant/list?start=${start}&count=20&summonerId=${summonerId}`,
                 dataType: 'json'
             }).done(function (res) {
                 res.content.forEach(match => renderMatchEl(match))
