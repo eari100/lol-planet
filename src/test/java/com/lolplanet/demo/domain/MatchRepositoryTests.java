@@ -5,13 +5,10 @@ import com.lolplanet.demo.domain.match.MatchRepository;
 import com.lolplanet.demo.domain.participant.Participant;
 import com.lolplanet.demo.domain.participant.ParticipantId;
 import com.lolplanet.demo.domain.participant.ParticipantRepository;
-import com.lolplanet.demo.web.dto.MatchResDto;
-import com.lolplanet.demo.web.dto.ParticipantResDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
@@ -308,19 +305,15 @@ public class MatchRepositoryTests {
 
         final int count = 1;
 
-        Page<MatchResDto> matchResDtos = matchRepository.findList((PageRequest.of(0, count, Sort.by("gameCreation").descending())), "한남동의 황제");
+        List<Match> matchList = matchRepository.findList((PageRequest.of(0, count, Sort.by("gameCreation").descending())), "한남동의 황제");
 
-        assertThat(matchResDtos.getNumber()).isEqualTo(0);
-        assertThat(matchResDtos.getTotalPages()).isEqualTo(1);
-        assertThat(matchResDtos.getContent().size()).isEqualTo(1);
+        for(Match match : matchList) {
+           List<Participant> participantList = match.getParticipants();
 
-        for(MatchResDto matchResDto : matchResDtos) {
-           List<ParticipantResDto> participantResDtos = matchResDto.getParticipants();
+           assertThat(participantList.size()).isEqualTo(10);
 
-           assertThat(participantResDtos.size()).isEqualTo(10);
-
-           for(ParticipantResDto participantResDto : participantResDtos) {
-               assertThat(participantResDto.getChampionName()).isNotNull();
+           for(Participant participant : participantList) {
+               assertThat(participant.getChampionId()).isNotNull();
            }
         }
     }

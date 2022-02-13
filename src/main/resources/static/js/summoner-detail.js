@@ -56,24 +56,39 @@ const summoner_detail = {
                 </div>`
             )
             $( "#tabs" ).tabs()
-            findMatchList(0)
+            renew(false, 0)
             $('#btn-renew').click(function (e){
                 e.preventDefault()
                 let l = Ladda.create(this)
                 l.start()
                 l.setProgress(0.3)
 
-                renew(l)
+                renew(l, 0)
             })
         }
 
         function findMatchList(start) {
+            $('.GameMoreButton.Box').remove()
+
             $.ajax({
                 type: 'GET',
                 url: `/lol/participant/list?start=${start}&count=20&summonerName=${summonerName}`,
                 dataType: 'json'
             }).done(function (res) {
                 res.content.forEach(match => renderMatchEl(match))
+
+                const contentLen = res.content.length
+                if(contentLen === 20) {
+                    renderGameMoreBtn()
+                    $('#btn-gameMore').click(function (e){
+                        e.preventDefault()
+                        let l = Ladda.create(this)
+                        l.start()
+                        l.setProgress(0.3)
+
+                        renew(l, start+20)
+                    })
+                }
             }).fail(function (error) {
                 alert(JSON.stringify(error))
             })
@@ -185,21 +200,28 @@ const summoner_detail = {
                 </div>`)
         }
 
-        function renew(ladda) {
+        function renderGameMoreBtn() {
+            $('#tabs-match').append(
+            `<div class="GameMoreButton Box">
+                <a class="Button ladda-button" id="btn-gameMore" data-style="slide-right" data-size="s">더 보기</a>
+            </div>`)
+        }
+
+        function renew(ladda, start) {
            $.ajax({
                type: 'POST',
-               url: `/lol/summoner/renew/by-name/${summonerName}`,
+               url: `/lol/summoner/renew/by-name/${summonerName}?start=${start}&count=20`,
                success: function () {
-                   ladda.setProgress(0.9)
+                   if(ladda) ladda.setProgress(0.9)
                }
            }).done(function () {
-               $('.MatchesList').empty()
+               if(start===0) $('.MatchesList').empty() // 업데이트 시 최근의 20건만 나타난다
                findSummonerInfo()
-               findMatchList(0)
+               findMatchList(start)
            }).fail(function (error) {
                alert(JSON.stringify(error))
            }).always(function() {
-               ladda.stop();
+               if(ladda) ladda.stop();
            })
        }
     }

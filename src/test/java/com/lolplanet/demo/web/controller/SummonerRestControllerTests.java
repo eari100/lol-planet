@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import java.util.List;
 
@@ -149,7 +151,13 @@ public class SummonerRestControllerTests {
                 .build();
         summonerRepository.save(summoner);
 
-        mockMvc.perform(post("/lol/summoner/renew/by-name/" + name))
+        MultiValueMap<String, String> info = new LinkedMultiValueMap<>();
+
+        info.add("start", "0");
+        info.add("count", "20");
+
+        mockMvc.perform(post("/lol/summoner/renew/by-name/" + name)
+                .params(info))
                 .andDo(print())
                 .andExpect(status().isOk());
 
@@ -186,11 +194,18 @@ public class SummonerRestControllerTests {
                 .build();
         summonerRepository.save(summoner);
 
+        MultiValueMap<String, String> info = new LinkedMultiValueMap<>();
+
+        info.add("start", "0");
+        info.add("count", "20");
+
         // renew 2번 실행
-        mockMvc.perform(post("/lol/summoner/renew/by-name/" + name))
+        mockMvc.perform(post("/lol/summoner/renew/by-name/" + name)
+                .params(info))
                 .andDo(print())
                 .andExpect(status().isOk());
-        mockMvc.perform(post("/lol/summoner/renew/by-name/" + name))
+        mockMvc.perform(post("/lol/summoner/renew/by-name/" + name)
+                .params(info))
                 .andDo(print())
                 .andExpect(status().isOk());
 
