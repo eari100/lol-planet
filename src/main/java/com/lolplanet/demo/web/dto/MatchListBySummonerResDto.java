@@ -4,6 +4,9 @@ import com.lolplanet.demo.domain.match.Match;
 import com.lolplanet.demo.domain.participant.Participant;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 public class MatchListBySummonerResDto {
     private String mapName;
@@ -39,6 +42,7 @@ public class MatchListBySummonerResDto {
     private String gameResult;
     private String summonerName;
     private Integer participantId;
+    private List<ParticipantResDto> participants = new ArrayList<>();
 
     public MatchListBySummonerResDto(Participant entity) {
         DbColumnConverter converter = new DbColumnConverter();
@@ -77,5 +81,9 @@ public class MatchListBySummonerResDto {
         this.gameResult = converter.convertToGameResult(this.win);
         this.summonerName = entity.getSummonerName();
         this.participantId = entity.getParticipantId();
+
+        for(Participant participant : entity.getId().getMatch().getParticipants()) {
+            participants.add(new ParticipantResDto(participant));
+        }
     }
 }

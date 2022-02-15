@@ -6,6 +6,7 @@ import com.lolplanet.demo.domain.participant.Participant;
 import com.lolplanet.demo.domain.participant.ParticipantId;
 import com.lolplanet.demo.domain.participant.ParticipantRepository;
 import com.lolplanet.demo.web.dto.MatchListBySummonerResDto;
+import com.lolplanet.demo.web.dto.ParticipantResDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -319,6 +320,9 @@ public class ParticipantRepositoryTests {
 
         for(MatchListBySummonerResDto mlbnDto : dto) {
             assertThat(mlbnDto.getSummonerName()).isNotNull();
+            for(ParticipantResDto pDto : mlbnDto.getParticipants()) {
+                assertThat(pDto.getSummonerName()).isNotNull();
+            }
         }
     }
 }
