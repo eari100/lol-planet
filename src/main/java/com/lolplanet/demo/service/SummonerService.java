@@ -58,7 +58,7 @@ public class SummonerService {
             return new SummonerResDto();
         }
 
-        Summoner summoner = summonerRepository.findByName(name)
+        Summoner summoner = summonerRepository.findByNameWithBlankRemoved(name.replaceAll(" ", ""))
                 .orElseThrow(() -> new IllegalArgumentException("해당 소환사가 없습니다. name=" + name));
 
         summoner.update(reqDto.getAccountId(), reqDto.getProfileIconId(), reqDto.getRevisionDate(),
