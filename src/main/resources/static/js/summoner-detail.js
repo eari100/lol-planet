@@ -203,31 +203,41 @@ const summoner_detail = {
                                         <div class="ChampionImage">
                                             <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[0].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
                                         </div>
-                                        <div class="SummonerName">${match.participants[0].summonerName}</div>
+                                        <div class="SummonerName">
+                                            <a href="/userName=${match.participants[0].summonerName}">${match.participants[0].summonerName}</a>
+                                        </div>
                                     </div>
                                     <div class="Summoner ">
                                         <div class="ChampionImage">
                                             <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[1].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
                                         </div>
-                                        <div class="SummonerName">${match.participants[1].summonerName}</div>
+                                        <div class="SummonerName">
+                                            <a href="/userName=${match.participants[1].summonerName}">${match.participants[1].summonerName}</a>
+                                        </div>
                                     </div>
                                     <div class="Summoner ">
                                         <div class="ChampionImage">
                                             <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[2].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
                                         </div>
-                                        <div class="SummonerName">${match.participants[2].summonerName}</div>
+                                        <div class="SummonerName">
+                                            <a href="/userName=${match.participants[2].summonerName}">${match.participants[2].summonerName}</a>
+                                        </div>
                                     </div>
                                     <div class="Summoner ">
                                         <div class="ChampionImage">
                                             <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[3].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
                                         </div>
-                                        <div class="SummonerName">${match.participants[3].summonerName}</div>
+                                        <div class="SummonerName">
+                                            <a href="/userName=${match.participants[3].summonerName}">${match.participants[3].summonerName}</a>
+                                        </div>
                                     </div>
                                     <div class="Summoner ">
                                         <div class="ChampionImage">
                                             <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[4].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
                                         </div>
-                                        <div class="SummonerName">${match.participants[4].summonerName}</div>
+                                        <div class="SummonerName">
+                                            <a href="/userName=${match.participants[4].summonerName}">${match.participants[4].summonerName}</a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="Team">
@@ -235,31 +245,41 @@ const summoner_detail = {
                                         <div class="ChampionImage">
                                             <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[5].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
                                         </div>
-                                        <div class="SummonerName">${match.participants[5].summonerName}</div>
+                                        <div class="SummonerName">
+                                            <a href="/userName=${match.participants[5].summonerName}">${match.participants[5].summonerName}</a>
+                                        </div>
                                     </div>
                                     <div class="Summoner ">
                                         <div class="ChampionImage">
                                             <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[6].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
                                         </div>
-                                        <div class="SummonerName">${match.participants[6].summonerName}</div>
+                                        <div class="SummonerName">
+                                            <a href="/userName=${match.participants[6].summonerName}">${match.participants[6].summonerName}</a>
+                                        </div>
                                     </div>
                                     <div class="Summoner ">
                                         <div class="ChampionImage">
                                             <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[7].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
                                         </div>
-                                        <div class="SummonerName">${match.participants[7].summonerName}</div>
+                                        <div class="SummonerName">
+                                            <a href="/userName=${match.participants[7].summonerName}">${match.participants[7].summonerName}</a>
+                                        </div>
                                     </div>
                                     <div class="Summoner ">
                                         <div class="ChampionImage">
                                             <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[8].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
                                         </div>
-                                        <div class="SummonerName">${match.participants[8].summonerName}</div>
+                                        <div class="SummonerName">
+                                            <a href="/userName=${match.participants[8].summonerName}">${match.participants[8].summonerName}</a>
+                                        </div>
                                     </div>
                                     <div class="Summoner ">
                                         <div class="ChampionImage">
                                             <img src="//opgg-static.akamaized.net/images/lol/champion/${match.participants[9].championName}.png?image=c_scale,q_auto,w_46&amp;v=1619585878" class="Image16 __sprite __spc16 __spc16-34 tip tpd-delegation-uid-1">
                                         </div>
-                                        <div class="SummonerName">${match.participants[9].summonerName}</div>
+                                        <div class="SummonerName">
+                                            <a href="/userName=${match.participants[9].summonerName}">${match.participants[9].summonerName}</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
