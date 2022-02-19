@@ -42,7 +42,8 @@ public class MatchListBySummonerResDto {
     private String gameResult;
     private String summonerName;
     private Integer participantId;
-    private List<ParticipantResDto> participants = new ArrayList<>();
+    private List<ParticipantResDto> blueTeam = new ArrayList<>();
+    private List<ParticipantResDto> redTeam = new ArrayList<>();
 
     public MatchListBySummonerResDto(Participant entity) {
         DbColumnConverter converter = new DbColumnConverter();
@@ -82,8 +83,13 @@ public class MatchListBySummonerResDto {
         this.summonerName = entity.getSummonerName();
         this.participantId = entity.getParticipantId();
 
-        for(Participant participant : entity.getId().getMatch().getParticipants()) {
-            participants.add(new ParticipantResDto(participant));
-        }
+        entity.getId().getMatch().getParticipants()
+            .forEach(p -> {
+                if (p.getTeamId() == 100) {
+                    blueTeam.add(new ParticipantResDto(p));
+                } else if (p.getTeamId() == 200) {
+                    redTeam.add(new ParticipantResDto(p));
+                }
+            });
     }
 }

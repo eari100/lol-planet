@@ -320,7 +320,10 @@ public class ParticipantRepositoryTests {
 
         for(MatchListBySummonerResDto mlbnDto : dto) {
             assertThat(mlbnDto.getSummonerName()).isNotNull();
-            for(ParticipantResDto pDto : mlbnDto.getParticipants()) {
+            for(ParticipantResDto pDto : mlbnDto.getBlueTeam()) {
+                assertThat(pDto.getSummonerName()).isNotNull();
+            }
+            for(ParticipantResDto pDto : mlbnDto.getRedTeam()) {
                 assertThat(pDto.getSummonerName()).isNotNull();
             }
         }
