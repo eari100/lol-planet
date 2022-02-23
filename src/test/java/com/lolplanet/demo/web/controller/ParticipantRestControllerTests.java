@@ -55,7 +55,7 @@ public class ParticipantRestControllerTests {
 
         matchRepository.save(match1);
 
-        Match lazyMatch1 = matchRepository.getOne(5695889101L);
+        Match lazyMatch1 = matchRepository.getById(5695889101L);
 
         Participant participant1 = Participant.builder()
                 .championId(54)
